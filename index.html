@@ -1,1010 +1,1655 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="en" id="html-root">
 <head>
   <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>GRAPAD | asbl </title>
-
-  <!-- 
-    - favicon
-  -->
-  <link rel="shortcut icon" href="./assets/images/LOGO-modified.png"  type="image/svg+xml">
-
-  <!-- 
-    - custom css link
-  -->
-  <link rel="stylesheet" href="./assets/css/style.css">
-
-  <!-- 
-    - google font link
-  -->
+  <title>GRAPAD asbl — Social Reintegration for Peace, Bukavu, DRC</title>
+  <meta name="description" content="GRAPAD asbl specialises in the social reintegration of populations affected by armed conflict — children, women and displaced families — in Bukavu, South Kivu, DRC.">
+  <meta name="keywords" content="GRAPAD, Bukavu, DRC, Congo, NGO, peace, human rights, women, children, South Kivu, humanitarian">
+  <meta property="og:title" content="GRAPAD asbl — Peace & Development, Eastern DRC">
+  <meta property="og:description" content="Working for peace, human rights and community development in eastern DRC since 2018.">
+  <meta property="og:url" content="https://grapadasbl.org">
+  <meta property="og:type" content="website">
+  <link rel="shortcut icon" href="./assets/images/LOGO-modified.png" type="image/png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@400;500;600;700&display=swap"
-    rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    /* ── TOKENS ── */
+    :root {
+      --ink:       #0f1e2d;
+      --ink-soft:  #4a5068;
+      --ink-muted: #8892a4;
+      --cream:     #f0f7fb;
+      --white:     #ffffff;
+      --teal:      #0e87c8;
+      --teal-mid:  #1a9cd8;
+      --teal-light:#e6f4fb;
+      --gold:      #d4116e;
+      --gold-light:#fce6f1;
+      --red-soft:  #c0392b;
+      --border:    #dce6ee;
+      --green:     #3bb86e;
+      --green-light:#eaf7ef;
+      --shadow-sm: 0 2px 8px rgba(15,30,45,.09);
+      --shadow-md: 0 8px 32px rgba(15,30,45,.13);
+      --shadow-lg: 0 20px 60px rgba(26,31,46,.15);
+      --radius:    12px;
+      --radius-lg: 20px;
+      --ff-display: 'Playfair Display', Georgia, serif;
+      --ff-body:    'Inter', system-ui, sans-serif;
+      --transition: 0.25s ease;
+    }
+
+    /* ── RESET ── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; font-size: 16px; }
+    body { font-family: var(--ff-body); color: var(--ink); background: var(--white); line-height: 1.6; -webkit-font-smoothing: antialiased; }
+    img { display: block; max-width: 100%; }
+    a { text-decoration: none; color: inherit; }
+    ul { list-style: none; }
+    address { font-style: normal; }
+
+    /* ── CONTAINER ── */
+    .container { max-width: 1180px; margin-inline: auto; padding-inline: 24px; }
+
+    /* ── LIGHTBOX ── */
+    .lightbox { display: none; position: fixed; inset: 0; background: rgba(0,0,0,.88); z-index: 9999; align-items: center; justify-content: center; }
+    .lightbox.open { display: flex; }
+    .lightbox img { max-width: 90vw; max-height: 88vh; border-radius: 8px; }
+    .lightbox-close { position: absolute; top: 24px; right: 32px; color: #fff; font-size: 2.4rem; cursor: pointer; line-height: 1; background: none; border: none; opacity: .8; transition: opacity var(--transition); }
+    .lightbox-close:hover { opacity: 1; }
+
+    /* ── HEADER ── */
+    .site-header { position: sticky; top: 0; z-index: 100; background: rgba(255,255,255,.96); backdrop-filter: blur(10px); border-bottom: 1px solid var(--border); }
+    .header-inner { display: flex; align-items: center; gap: 32px; height: 72px; }
+    .site-logo { display: flex; align-items: center; gap: 12px; flex-shrink: 0; }
+    .site-logo img { width: 44px; height: 44px; border-radius: 50%; object-fit: cover; }
+    .site-logo-text { font-family: var(--ff-display); font-size: 1.15rem; color: var(--teal); line-height: 1.2; }
+    .site-logo-text span { display: block; font-family: var(--ff-body); font-size: .7rem; font-weight: 400; color: var(--ink-muted); letter-spacing: .04em; text-transform: uppercase; }
+    .nav { display: flex; align-items: center; gap: 4px; margin-left: auto; }
+    .nav a { font-size: .875rem; font-weight: 500; color: var(--ink-soft); padding: 8px 14px; border-radius: 8px; transition: all var(--transition); }
+    .nav a:hover { color: var(--teal); background: var(--teal-light); }
+    .btn-donate { display: inline-flex; align-items: center; gap: 8px; background: var(--teal); color: #fff; font-family: var(--ff-body); font-size: .875rem; font-weight: 600; padding: 10px 22px; border-radius: 8px; border: none; cursor: pointer; transition: background var(--transition); flex-shrink: 0; }
+    .btn-donate:hover { background: var(--teal-mid); }
+    .nav-toggle { display: none; background: none; border: none; cursor: pointer; padding: 8px; }
+    .nav-toggle span { display: block; width: 22px; height: 2px; background: var(--ink); margin: 5px 0; transition: var(--transition); border-radius: 2px; }
+
+    /* ── HERO ── */
+    .hero { background: linear-gradient(160deg, #0a2540 0%, #1565c0 50%, #0e87c8 100%); color: #fff; padding: 100px 0 80px; position: relative; overflow: hidden; }
+    .hero::before { content:''; position:absolute; inset:0; background: url('./assets/images/BG_1.JPG') center/cover no-repeat; opacity:.35; }
+    .hero-inner { position: relative; display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center; }
+    .hero-eyebrow { display: inline-flex; align-items: center; gap: 10px; background: rgba(255,255,255,.1); border: 1px solid rgba(255,255,255,.2); border-radius: 100px; padding: 6px 16px; font-size: .78rem; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; color: rgba(255,255,255,.8); margin-bottom: 24px; }
+    .hero-eyebrow::before { content:''; width: 8px; height: 8px; background: var(--gold); border-radius: 50%; flex-shrink: 0; animation: pulse 2s infinite; }
+    @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:.5} }
+    .hero-title { font-family: var(--ff-display); font-size: clamp(2.2rem, 4vw, 3.4rem); line-height: 1.18; color: #fff; margin-bottom: 24px; }
+    .hero-title em { font-style: normal; color: var(--gold); }
+    .hero-sub { font-size: 1.05rem; color: rgba(255,255,255,.72); line-height: 1.7; margin-bottom: 36px; max-width: 480px; }
+    .hero-quote { font-family: var(--ff-display); font-size: .9rem; font-style: italic; color: rgba(255,255,255,.65); padding-left: 0; margin-top: 28px; opacity: .85; }
+    .hero-actions { display: flex; gap: 12px; flex-wrap: wrap; }
+    .btn-primary { display: inline-flex; align-items: center; gap: 8px; background: var(--teal); color: #fff; font-weight: 600; font-size: .9rem; padding: 13px 26px; border-radius: 8px; transition: background var(--transition); }
+    .btn-primary:hover { background: var(--teal-mid); }
+    .btn-ghost { display: inline-flex; align-items: center; gap: 8px; background: rgba(255,255,255,.1); color: #fff; font-weight: 500; font-size: .9rem; padding: 13px 26px; border-radius: 8px; border: 1px solid rgba(255,255,255,.25); transition: background var(--transition); }
+    .btn-ghost:hover { background: rgba(255,255,255,.18); }
+    .hero-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: rgba(255,255,255,.1); border-radius: var(--radius); overflow: hidden; }
+    .stat-item { background: rgba(255,255,255,.06); padding: 28px 20px; text-align: center; }
+    .stat-number { font-family: var(--ff-display); font-size: 2rem; font-weight: 700; color: var(--gold); display: block; }
+    .stat-label { font-size: .78rem; color: rgba(255,255,255,.6); margin-top: 4px; letter-spacing: .03em; }
+
+    /* ── SECTION DEFAULTS ── */
+    .section { padding: 88px 0; }
+    .section-alt { background: var(--cream); }
+    .section-dark { background: var(--ink); color: #fff; }
+    .eyebrow { display: inline-block; font-size: .72rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--teal); background: var(--teal-light); padding: 5px 12px; border-radius: 100px; margin-bottom: 16px; }
+    .eyebrow-gold { color: var(--gold); background: var(--gold-light); }
+    .section-title { font-family: var(--ff-display); font-size: clamp(1.8rem, 3vw, 2.6rem); color: var(--ink); line-height: 1.25; margin-bottom: 16px; }
+    .section-title-white { color: #fff; }
+    .section-lead { font-size: 1.05rem; color: var(--ink-soft); line-height: 1.75; max-width: 640px; }
+    .section-lead-white { color: rgba(255,255,255,.7); }
+    .section-header { margin-bottom: 56px; }
+    .section-header-centered { text-align: center; }
+    .section-header-centered .section-lead { margin-inline: auto; }
+    .divider { width: 48px; height: 3px; background: var(--teal); border-radius: 2px; margin: 20px 0; }
+    .divider-gold { background: var(--gold); }
+    .divider-centered { margin-inline: auto; }
+
+    /* ── ABOUT ── */
+    .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 72px; align-items: center; }
+    .about-img-wrap { position: relative; }
+    .about-img-wrap img { width: 100%; height: 480px; object-fit: cover; border-radius: var(--radius-lg); }
+    .about-badge { position: absolute; bottom: -24px; right: -24px; background: linear-gradient(135deg, #0e87c8 0%, #0d3d6e 100%); color: #fff; border-radius: var(--radius); padding: 20px 24px; box-shadow: var(--shadow-lg); }
+    .about-badge strong { font-family: var(--ff-display); font-size: 2.2rem; display: block; }
+    .about-badge span { font-size: .8rem; opacity: .85; }
+    .about-areas { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 32px; }
+    .area-tag { display: flex; align-items: center; gap: 10px; padding: 12px 16px; background: var(--teal-light); border-radius: 8px; font-size: .875rem; font-weight: 500; color: var(--teal); }
+    .area-tag svg { width: 16px; height: 16px; flex-shrink: 0; }
+
+    /* ── VISION CARDS ── */
+    .vision-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+    .vision-card { background: var(--white); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 36px 28px; transition: box-shadow var(--transition), transform var(--transition); }
+    .vision-card:hover { box-shadow: var(--shadow-md); transform: translateY(-4px); }
+    .vision-icon { width: 52px; height: 52px; background: var(--teal-light); border-radius: 12px; display: flex; align-items: center; justify-content: center; margin-bottom: 20px; }
+    .vision-icon svg { width: 24px; height: 24px; stroke: var(--teal); fill: none; stroke-width: 2; stroke-linecap: round; }
+    .vision-card h3 { font-family: var(--ff-display); font-size: 1.15rem; color: var(--ink); margin-bottom: 10px; }
+    .vision-card p { font-size: .9rem; color: var(--ink-soft); line-height: 1.7; }
+
+    /* ── PROGRAMMES ── */
+    .programmes-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+    .programme-card { background: var(--white); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 32px; position: relative; overflow: hidden; transition: box-shadow var(--transition); }
+    .programme-card::before { content:''; position:absolute; top:0; left:0; width:4px; height:100%; background: var(--teal); }
+    .programme-card:hover { box-shadow: var(--shadow-md); }
+    .programme-tag { font-size: .72rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--teal); margin-bottom: 10px; }
+    .programme-card h3 { font-family: var(--ff-display); font-size: 1.2rem; color: var(--ink); margin-bottom: 10px; }
+    .programme-card p { font-size: .9rem; color: var(--ink-soft); line-height: 1.7; }
+
+    /* ── CAUSES ── */
+    .causes-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+    .cause-card { border-radius: var(--radius-lg); overflow: hidden; box-shadow: var(--shadow-sm); transition: box-shadow var(--transition), transform var(--transition); }
+    .cause-card:hover { box-shadow: var(--shadow-md); transform: translateY(-4px); }
+    .cause-img { width: 100%; height: 220px; object-fit: cover; }
+    .cause-body { padding: 24px; background: var(--white); }
+    .cause-body p { font-size: .9rem; color: var(--ink-soft); line-height: 1.65; }
+
+    /* ── TEAM ── */
+    .team-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; }
+    .team-card { background: var(--white); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 28px 20px; text-align: center; transition: box-shadow var(--transition), transform var(--transition); }
+    .team-card:hover { box-shadow: var(--shadow-md); transform: translateY(-3px); }
+    .team-photo { width: 96px; height: 96px; border-radius: 50%; object-fit: cover; margin: 0 auto 16px; border: 3px solid var(--teal-light); }
+    .team-name { font-family: var(--ff-display); font-size: 1rem; color: var(--ink); margin-bottom: 4px; }
+    .team-role { font-size: .8rem; font-weight: 600; color: var(--teal); text-transform: uppercase; letter-spacing: .04em; margin-bottom: 10px; }
+    .team-bio { font-size: .82rem; color: var(--ink-muted); line-height: 1.6; }
+    .team-card-featured { grid-column: span 1; border-color: var(--teal); border-top: 3px solid var(--gold); }
+    .team-card-featured .team-photo { border-color: var(--teal); border-width: 3px; }
+
+    /* ── BLOG / GALLERY ── */
+    .gallery-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+    .gallery-item { border-radius: var(--radius); overflow: hidden; cursor: pointer; position: relative; }
+    .gallery-item img { width: 100%; height: 220px; object-fit: cover; transition: transform .4s ease; display: block; }
+    .gallery-item:hover img { transform: scale(1.04); }
+    .gallery-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(13,110,110,.6) 0%, transparent 60%); opacity: 0; transition: opacity var(--transition); display: flex; align-items: flex-end; padding: 16px; }
+    .gallery-item:hover .gallery-overlay { opacity: 1; }
+    .gallery-overlay span { color: #fff; font-size: .78rem; font-weight: 600; text-shadow: 0 1px 3px rgba(0,0,0,.4); }
+
+    /* ── CONTACT ── */
+    .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: start; }
+    .contact-info { display: flex; flex-direction: column; gap: 20px; }
+    .contact-item { display: flex; align-items: flex-start; gap: 16px; }
+    .contact-icon { width: 44px; height: 44px; background: var(--teal-light); border-radius: 10px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .contact-icon svg { width: 20px; height: 20px; stroke: var(--teal); fill: none; stroke-width: 2; stroke-linecap: round; }
+    .contact-item-title { font-size: .78rem; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; color: var(--ink-muted); margin-bottom: 4px; }
+    .contact-item-value { font-size: .95rem; color: var(--ink); }
+    .contact-item-value a { color: var(--teal); }
+    .contact-item-value a:hover { text-decoration: underline; }
+    .social-row { display: flex; gap: 12px; margin-top: 8px; }
+    .social-btn { width: 40px; height: 40px; background: var(--teal-light); border-radius: 8px; display: flex; align-items: center; justify-content: center; transition: background var(--transition); }
+    .social-btn:hover { background: var(--gold); }
+    .social-btn:hover svg { stroke: #fff; }
+    .social-btn svg { width: 18px; height: 18px; stroke: var(--teal); fill: none; stroke-width: 2; stroke-linecap: round; }
+    .contact-cta { background: var(--teal); border-radius: var(--radius-lg); padding: 40px; color: #fff; }
+    .contact-cta h3 { font-family: var(--ff-display); font-size: 1.5rem; margin-bottom: 12px; }
+    .contact-cta p { font-size: .95rem; opacity: .8; line-height: 1.7; margin-bottom: 28px; }
+    .btn-white { display: inline-flex; align-items: center; gap: 8px; background: #fff; color: var(--teal); font-weight: 600; font-size: .9rem; padding: 12px 24px; border-radius: 8px; transition: background var(--transition); }
+    .btn-white:hover { background: var(--cream); }
+
+    /* ── CTA BAND ── */
+    .cta-band { background: linear-gradient(135deg, #d4116e 0%, #a80055 100%); padding: 64px 0; }
+    .cta-band-inner { display: flex; align-items: center; justify-content: space-between; gap: 32px; flex-wrap: wrap; }
+    .cta-band h2 { font-family: var(--ff-display); font-size: 1.9rem; color: var(--ink); max-width: 540px; line-height: 1.3; }
+    .btn-dark { display: inline-flex; align-items: center; gap: 8px; background: #0d1f3c; color: #fff; font-weight: 600; font-size: .9rem; padding: 14px 28px; border-radius: 8px; transition: opacity var(--transition); flex-shrink: 0; }
+    .btn-dark:hover { opacity: .85; }
+
+    /* ── FOOTER ── */
+    .site-footer { background: var(--ink); color: rgba(255,255,255,.65); padding: 64px 0 32px; }
+    .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 48px; margin-bottom: 48px; }
+    .footer-brand img { width: 52px; height: 52px; border-radius: 50%; margin-bottom: 16px; }
+    .footer-brand p { font-size: .88rem; line-height: 1.7; max-width: 300px; }
+    .footer-brand strong { display: block; color: #fff; font-family: var(--ff-display); font-size: 1.1rem; margin-bottom: 8px; }
+    .footer-col h4 { font-size: .8rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: rgba(255,255,255,.4); margin-bottom: 16px; }
+    .footer-links { display: flex; flex-direction: column; gap: 10px; }
+    .footer-links a { font-size: .88rem; color: rgba(255,255,255,.6); transition: color var(--transition); }
+    .footer-links a:hover { color: var(--gold); }
+    .footer-bottom { border-top: 1px solid rgba(255,255,255,.08); padding-top: 24px; display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+    .footer-bottom p { font-size: .8rem; }
+
+    /* ── BACK TO TOP ── */
+    .back-to-top { position: fixed; bottom: 28px; right: 28px; width: 44px; height: 44px; background: var(--teal); color: #fff; border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: var(--shadow-md); opacity: 0; pointer-events: none; transition: opacity var(--transition); z-index: 50; }
+    .back-to-top.visible { opacity: 1; pointer-events: auto; }
+    .back-to-top svg { width: 18px; height: 18px; stroke: #fff; fill: none; stroke-width: 2.5; stroke-linecap: round; }
+
+    /* ── RESPONSIVE ── */
+    .hero-motto {
+      display: inline-block;
+      font-family: var(--ff-display);
+      font-size: 1.05rem;
+      font-style: italic;
+      color: #f9b4d4;
+      margin-bottom: 28px;
+      letter-spacing: .01em;
+      border-left: 3px solid var(--gold);
+      padding-left: 14px;
+    }
+    @media (max-width: 1024px) {
+      .team-grid { grid-template-columns: repeat(3, 1fr); }
+    }
+    @media (max-width: 768px) {
+      .nav { display: none; }
+      .nav.open { display: flex; flex-direction: column; position: absolute; top: 72px; left: 0; right: 0; background: #fff; border-bottom: 1px solid var(--border); padding: 16px 24px; gap: 4px; z-index: 99; }
+      .nav-toggle { display: block; }
+      .hero-inner, .about-grid, .contact-grid { grid-template-columns: 1fr; }
+      .hero-stats { grid-template-columns: repeat(3, 1fr); }
+      .hero { padding: 64px 0 56px; }
+      .about-badge { right: 0; bottom: -16px; }
+      .vision-grid, .causes-grid { grid-template-columns: 1fr; }
+      .programmes-grid { grid-template-columns: 1fr; }
+      .gallery-grid { grid-template-columns: repeat(2, 1fr); }
+      .team-grid { grid-template-columns: repeat(2, 1fr); }
+      .footer-grid { grid-template-columns: 1fr; gap: 32px; }
+      .cta-band-inner { flex-direction: column; text-align: center; }
+    }
+    @media (max-width: 480px) {
+      .hero-stats { grid-template-columns: 1fr; }
+      .gallery-grid { grid-template-columns: 1fr; }
+      .team-grid { grid-template-columns: 1fr; }
+      .about-areas { grid-template-columns: 1fr; }
+    }
+
+    /* ── LANGUAGE SWITCHER ── */
+    .lang-bar {
+      position: fixed;
+      top: 0;
+      right: 0;
+      z-index: 200;
+      display: flex;
+      align-items: center;
+      background: var(--ink);
+      border-radius: 0 0 0 12px;
+      padding: 6px 10px;
+      gap: 4px;
+      box-shadow: var(--shadow-md);
+    }
+    .lang-bar-label {
+      font-size: .68rem;
+      font-weight: 700;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,.4);
+      padding-right: 8px;
+      border-right: 1px solid rgba(255,255,255,.12);
+      margin-right: 4px;
+    }
+    .lang-btn {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      background: none;
+      border: none;
+      border-radius: 6px;
+      padding: 5px 9px;
+      font-family: var(--ff-body);
+      font-size: .75rem;
+      font-weight: 500;
+      color: rgba(255,255,255,.6);
+      cursor: pointer;
+      transition: all var(--transition);
+      white-space: nowrap;
+    }
+    .lang-btn:hover { background: rgba(255,255,255,.1); color: #fff; }
+    .lang-btn.active { background: var(--teal); color: #fff; font-weight: 600; }
+    .lang-flag { font-size: 1rem; line-height: 1; }
+    /* Push header down when lang bar is there */
+
+    @media (max-width: 768px) {
+      .lang-bar { padding: 4px 8px; gap: 2px; }
+      .lang-btn { padding: 4px 6px; font-size: .68rem; }
+      .lang-flag { font-size: .85rem; }
+      .lang-bar-label { display: none; }
+      .site-header { top: 32px; }
+    }
+
+
+    /* ── LANGUAGE DROPDOWN ── */
+    .lang-switcher {
+      position: relative;
+      margin-left: 8px;
+    }
+    .lang-trigger {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      background: var(--teal-light);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 7px 12px;
+      font-family: var(--ff-body);
+      font-size: .8rem;
+      font-weight: 600;
+      color: var(--teal);
+      cursor: pointer;
+      transition: all var(--transition);
+      white-space: nowrap;
+      user-select: none;
+    }
+    .lang-trigger:hover { background: var(--teal); color: #fff; }
+    .lang-trigger svg {
+      width: 12px; height: 12px;
+      transition: transform var(--transition);
+      stroke: currentColor; fill: none;
+      stroke-width: 2.5; stroke-linecap: round;
+    }
+    .lang-switcher.open .lang-trigger { background: var(--teal); color: #fff; }
+    .lang-switcher.open .lang-trigger svg { transform: rotate(180deg); }
+    .lang-dropdown {
+      display: none;
+      position: absolute;
+      top: calc(100% + 8px);
+      right: 0;
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow-md);
+      overflow: hidden;
+      min-width: 160px;
+      z-index: 999;
+    }
+    .lang-switcher.open .lang-dropdown { display: block; }
+    .lang-option {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 16px;
+      font-size: .85rem;
+      font-weight: 500;
+      color: var(--ink-soft);
+      cursor: pointer;
+      transition: background var(--transition), color var(--transition);
+      border: none;
+      background: none;
+      width: 100%;
+      text-align: left;
+    }
+    .lang-option:hover { background: var(--teal-light); color: var(--teal); }
+    .lang-option.active { color: var(--teal); font-weight: 700; background: var(--teal-light); }
+    .lang-flag { font-size: 1.1rem; flex-shrink: 0; }
+    .lang-name { flex: 1; }
+    .lang-code { font-size: .72rem; color: var(--ink-muted); font-weight: 400; }
+    .lang-option.active .lang-code { color: var(--teal); }
+
+
+    @keyframes spin { to { transform: rotate(360deg); } }
+    /* ── CONTACT FORM ── */
+    .contact-form { display: flex; flex-direction: column; gap: 14px; margin-top: 4px; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+    .form-group { display: flex; flex-direction: column; gap: 6px; }
+    .form-group label {
+      font-size: .78rem; font-weight: 600; letter-spacing: .04em;
+      text-transform: uppercase; color: rgba(255,255,255,.7);
+    }
+    .form-input, .form-textarea {
+      background: rgba(255,255,255,.1);
+      border: 1px solid rgba(255,255,255,.2);
+      border-radius: 8px;
+      padding: 12px 16px;
+      font-family: var(--ff-body);
+      font-size: .9rem;
+      color: #fff;
+      transition: border-color var(--transition), background var(--transition);
+      width: 100%;
+      outline: none;
+    }
+    .form-input::placeholder, .form-textarea::placeholder { color: rgba(255,255,255,.4); }
+    .form-input:focus, .form-textarea:focus {
+      border-color: rgba(255,255,255,.6);
+      background: rgba(255,255,255,.15);
+    }
+    .form-textarea { resize: vertical; min-height: 110px; line-height: 1.6; }
+    .form-select {
+      background: rgba(255,255,255,.1);
+      border: 1px solid rgba(255,255,255,.2);
+      border-radius: 8px;
+      padding: 12px 16px;
+      font-family: var(--ff-body);
+      font-size: .9rem;
+      color: #fff;
+      width: 100%;
+      outline: none;
+      cursor: pointer;
+      transition: border-color var(--transition);
+      appearance: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='rgba(255,255,255,0.6)' stroke-width='2.5' stroke-linecap='round'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 14px center;
+      padding-right: 36px;
+    }
+    .form-select option { background: var(--ink); color: #fff; }
+    .form-select:focus { border-color: rgba(255,255,255,.6); }
+    .btn-send {
+      display: inline-flex; align-items: center; justify-content: center;
+      gap: 8px; background: #fff; color: var(--teal);
+      font-family: var(--ff-body); font-weight: 700; font-size: .9rem;
+      padding: 13px 28px; border-radius: 8px; border: none; cursor: pointer;
+      transition: background var(--transition), transform var(--transition);
+      align-self: flex-start; margin-top: 4px;
+    }
+    .btn-send:hover { background: var(--cream); transform: translateY(-1px); }
+    .btn-send svg { width: 16px; height: 16px; stroke: currentColor; fill: none; stroke-width: 2.5; stroke-linecap: round; }
+    .btn-send:disabled { opacity: .6; cursor: not-allowed; transform: none; }
+    .form-success {
+      display: none; align-items: center; gap: 12px;
+      background: rgba(255,255,255,.12); border: 1px solid rgba(255,255,255,.25);
+      border-radius: 10px; padding: 16px 20px;
+      color: #fff; font-size: .9rem; line-height: 1.5; margin-top: 8px;
+    }
+    .form-success.show { display: flex; }
+    .form-success svg { width: 22px; height: 22px; stroke: #fff; fill: none; stroke-width: 2.5; flex-shrink: 0; }
+    .form-error {
+      font-size: .8rem; color: #ffb3b3; margin-top: 2px; display: none;
+    }
+    .form-group.has-error .form-input,
+    .form-group.has-error .form-textarea { border-color: #ffb3b3; }
+    .form-group.has-error .form-error { display: block; }
+    @media (max-width: 768px) {
+      .form-row { grid-template-columns: 1fr; }
+    }
+
+
+    /* ── SOCIAL GRID ── */
+    .social-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-top: 10px;
+    }
+    .social-card {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background: var(--teal-light);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 10px 12px;
+      transition: all var(--transition);
+      text-decoration: none;
+    }
+    .social-card:hover {
+      background: var(--white);
+      box-shadow: var(--shadow-sm);
+      transform: translateY(-2px);
+    }
+    .social-card-icon {
+      width: 36px;
+      height: 36px;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .social-card-info {
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+      min-width: 0;
+    }
+    .social-card-name {
+      font-size: .82rem;
+      font-weight: 700;
+      color: var(--ink);
+      line-height: 1.2;
+    }
+    .social-card-handle {
+      font-size: .72rem;
+      color: var(--ink-muted);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .social-card-arrow {
+      flex-shrink: 0;
+      stroke: var(--ink-muted);
+      transition: stroke var(--transition), transform var(--transition);
+    }
+    .social-card:hover .social-card-arrow {
+      stroke: var(--teal);
+      transform: translateX(2px);
+    }
+    @media (max-width: 480px) {
+      .social-grid { grid-template-columns: 1fr; }
+    }
+
+
+    /* ── ACTIVITY EVENTS ── */
+    .activity-event { margin-bottom: 60px; }
+    .activity-event:last-child { margin-bottom: 0; }
+    .activity-event-header { margin-bottom: 28px; }
+    .activity-event-tag {
+      display: inline-block;
+      font-size: .72rem; font-weight: 700; letter-spacing: .08em;
+      text-transform: uppercase; color: var(--gold);
+      background: var(--gold-light); padding: 5px 12px;
+      border-radius: 100px; margin-bottom: 10px;
+    }
+    .activity-event-title {
+      font-family: var(--ff-display); font-size: 1.4rem;
+      color: var(--ink); margin-bottom: 10px;
+    }
+    .activity-event-desc {
+      font-size: .9rem; color: var(--ink-soft);
+      line-height: 1.75; max-width: 700px;
+    }
+    .gallery-grid-5 { grid-template-columns: repeat(3, 1fr); }
+    @media (max-width: 768px) {
+      .gallery-grid-5 { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 480px) {
+      .gallery-grid-5 { grid-template-columns: 1fr; }
+    }
+
+
+    /* ── ACTIVITY EVENTS ── */
+    .activity-event { margin-bottom: 56px; }
+    .activity-event:last-child { margin-bottom: 0; }
+    .activity-event-header { margin-bottom: 24px; padding-bottom: 20px; border-bottom: 1px solid var(--border); }
+    .activity-event-tag {
+      display: inline-block; font-size: .72rem; font-weight: 700;
+      letter-spacing: .08em; text-transform: uppercase;
+      color: var(--gold); background: var(--gold-light);
+      padding: 5px 12px; border-radius: 100px; margin-bottom: 10px;
+    }
+    .activity-event-title {
+      font-family: var(--ff-display); font-size: 1.35rem;
+      color: var(--ink); margin-bottom: 10px; line-height: 1.3;
+    }
+    .activity-event-desc {
+      font-size: .9rem; color: var(--ink-soft);
+      line-height: 1.75; max-width: 680px;
+    }
+
+
+    /* ── ACTIVITY EVENTS ── */
+    .events-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 56px;
+    }
+    .event-block {}
+    .event-header {
+      display: flex;
+      align-items: flex-start;
+      gap: 20px;
+      margin-bottom: 24px;
+      padding-bottom: 20px;
+      border-bottom: 2px solid var(--border);
+    }
+    .event-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: var(--teal-light);
+      color: var(--teal);
+      font-size: .72rem;
+      font-weight: 700;
+      letter-spacing: .07em;
+      text-transform: uppercase;
+      padding: 5px 12px;
+      border-radius: 100px;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+    .event-tag.pink {
+      background: var(--gold-light);
+      color: var(--gold);
+    }
+    .event-meta { flex: 1; }
+    .event-date {
+      font-size: .78rem;
+      color: var(--ink-muted);
+      font-weight: 500;
+      margin-bottom: 6px;
+    }
+    .event-title {
+      font-family: var(--ff-display);
+      font-size: 1.35rem;
+      color: var(--ink);
+      line-height: 1.3;
+      margin-bottom: 8px;
+    }
+    .event-desc {
+      font-size: .9rem;
+      color: var(--ink-soft);
+      line-height: 1.7;
+    }
+    .event-desc strong { color: var(--teal); }
+    .event-quote {
+      margin-top: 14px;
+      padding: 12px 18px;
+      background: var(--cream);
+      border-left: 3px solid var(--teal);
+      border-radius: 0 8px 8px 0;
+      font-size: .88rem;
+      color: var(--ink-soft);
+      font-style: italic;
+      line-height: 1.65;
+    }
+    .event-gallery {
+      display: grid;
+      gap: 10px;
+    }
+    .event-gallery.cols-3 { grid-template-columns: repeat(3, 1fr); }
+    .event-gallery.cols-2-3 {
+      grid-template-columns: repeat(3, 1fr);
+      grid-template-rows: auto auto;
+    }
+    .event-gallery.cols-2-3 .gallery-item:first-child {
+      grid-column: span 2;
+    }
+    .event-gallery .gallery-item img {
+      height: 240px;
+    }
+    .event-gallery.cols-2-3 .gallery-item:first-child img {
+      height: 300px;
+    }
+    @media (max-width: 768px) {
+      .event-gallery.cols-3,
+      .event-gallery.cols-2-3 { grid-template-columns: 1fr 1fr; }
+      .event-gallery.cols-2-3 .gallery-item:first-child { grid-column: span 2; }
+    }
+    @media (max-width: 480px) {
+      .event-gallery.cols-3,
+      .event-gallery.cols-2-3 { grid-template-columns: 1fr; }
+      .event-gallery.cols-2-3 .gallery-item:first-child { grid-column: span 1; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { transition: none !important; animation: none !important; }
+    }
+  </style>
 </head>
+<body>
 
-<body id="top">
 
-  <!-- 
-    - #HEADER
-  -->
+<!-- Lightbox -->
+<div class="lightbox" id="lightbox" onclick="closeLightbox(event)">
+  <button class="lightbox-close" onclick="closeLightbox()">×</button>
+  <img id="lightbox-img" src="" alt="">
+</div>
 
-  <div class="full-img" id="fullImgBox">
-    <img src="./assets/images/BLOG_1 (1).jpeg" id="fullImg">
-      <span onclick="closeFullImg()">X</span>
-  </div>
+<!-- ── HEADER ── -->
+<header class="site-header">
+  <div class="container header-inner">
+    <a href="#home" class="site-logo">
+      <img src="./assets/images/LOGO.png" alt="GRAPAD asbl">
+      <div class="site-logo-text">
+        GRAPAD asbl
+        <span>Bukavu · South Kivu · DRC</span>
+      </div>
+    </a>
 
-  <header class="header" data-header>
-    <div class="container">
+    <nav class="nav" id="main-nav">
+      <a href="#about" id="nav-about">About</a>
+      <a href="#programmes" id="nav-programmes">Programmes</a>
+      <a href="#team" id="nav-team">Team</a>
+      <a href="#gallery" id="nav-activities">Activities</a>
+      <a href="#contact" id="nav-contact">Contact</a>
+    </nav>
 
-      <a href="#" class="logo">
-        <img src="./assets/images/LOGO.png" alt="Girl in a jacket" width="50" height="50"> 
-      </a>
-
-      <nav class="navbar container" data-navbar>
-        <ul class="navbar-list">
-
-          <li>
-            <a href="#home" class="navbar-link" data-nav-link>Home</a>
-          </li>
-
-          <li>
-            <a href="#about" class="navbar-link" data-nav-link>About</a>
-          </li>
-
-          <li>
-            <a href="#causes" class="navbar-link" data-nav-link>Latest Causes</a>
-          </li>
-
-          <li>
-            <a href="#blog" class="navbar-link" data-nav-link>Blog</a>
-          </li>
-
-          <li>
-            <a href="#contact" class="navbar-link" data-nav-link>Contact</a>
-          </li>
-
-        </ul>
-      </nav>
-
-      <a href="https://www.paypal.com/donate/?hosted_button_id=NFENZFLJ8YL2S" class="btn btn-secondary">Donate</a>
-
-      <button class="nav-toggle-btn" aria-label="Toggle menu" data-nav-toggler>
-        <ion-icon name="menu-outline" aria-hidden="true" class="menu-icon"></ion-icon>
-        <ion-icon name="close-outline" aria-hidden="true" class="close-icon"></ion-icon>
+    <div class="lang-switcher" id="lang-switcher">
+      <button class="lang-trigger" id="lang-trigger" aria-label="Change language" aria-haspopup="true" aria-expanded="false">
+        <span id="lang-current-flag">🇬🇧</span>
+        <span id="lang-current-code">EN</span>
+        <svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
       </button>
-
+      <div class="lang-dropdown" role="menu">
+        <button class="lang-option active" data-lang="en" data-flag="🇬🇧" data-code="EN" onclick="setLang('en')" role="menuitem">
+          <span class="lang-flag">🇬🇧</span>
+          <span class="lang-name">English</span>
+          <span class="lang-code">EN</span>
+        </button>
+        <button class="lang-option" data-lang="fr" data-flag="🇫🇷" data-code="FR" onclick="setLang('fr')" role="menuitem">
+          <span class="lang-flag">🇫🇷</span>
+          <span class="lang-name">Français</span>
+          <span class="lang-code">FR</span>
+        </button>
+        <button class="lang-option" data-lang="es" data-flag="🇪🇸" data-code="ES" onclick="setLang('es')" role="menuitem">
+          <span class="lang-flag">🇪🇸</span>
+          <span class="lang-name">Español</span>
+          <span class="lang-code">ES</span>
+        </button>
+        <button class="lang-option" data-lang="de" data-flag="🇩🇪" data-code="DE" onclick="setLang('de')" role="menuitem">
+          <span class="lang-flag">🇩🇪</span>
+          <span class="lang-name">Deutsch</span>
+          <span class="lang-code">DE</span>
+        </button>
+        <button class="lang-option" data-lang="it" data-flag="🇮🇹" data-code="IT" onclick="setLang('it')" role="menuitem">
+          <span class="lang-flag">🇮🇹</span>
+          <span class="lang-name">Italiano</span>
+          <span class="lang-code">IT</span>
+        </button>
+        <button class="lang-option" data-lang="sw" data-flag="🇨🇩" data-code="SW" onclick="setLang('sw')" role="menuitem">
+          <span class="lang-flag">🇨🇩</span>
+          <span class="lang-name">Kiswahili</span>
+          <span class="lang-code">SW</span>
+        </button>
+      </div>
     </div>
-  </header>
+
+    <a href="https://www.paypal.com/donate/?hosted_button_id=NFENZFLJ8YL2S" class="btn-donate" id="nav-donate">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+      Donate
+    </a>
+
+    <button class="nav-toggle" id="nav-toggle" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<!-- ── HERO ── -->
+<section id="home" class="hero">
+  <div class="container">
+    <div class="hero-inner">
+      <div>
+        <div class="hero-eyebrow" id="hero-eyebrow">Social Reintegration • Human Rights • Eastern DRC</div>
+        <h1 class="hero-title" id="hero-title">
+          We walk alongside those <em>war has torn</em><br>from their normal lives.
+        </h1>
+        <p class="hero-sub" id="hero-sub">
+          GRAPAD asbl specialises in the <strong style="color:#fff;font-weight:600;">social reintegration</strong> of populations affected by armed conflict — children, women and displaced families — so they can rebuild their lives with dignity.
+        </p>
+        <p class="hero-motto" id="hero-motto">
+          “Universal well-being means living for others.”
+        </p>
+        <div class="hero-actions">
+          <a href="#programmes" class="btn-primary" id="hero-btn1">Our Programmes</a>
+          <a href="#contact" class="btn-ghost" id="hero-btn2">Contact us</a>
+        </div>
+        <blockquote class="hero-quote" id="hero-quote">
+          “Learn to do good; seek justice,<br>rescue the oppressed, defend the orphan,<br>plead for the widow.” — Isaiah 1:17
+        </blockquote>
+      </div>
+
+      <div>
+        <div class="hero-stats">
+          <div class="stat-item">
+            <span class="stat-number" id="stat1-num">350+</span>
+            <span class="stat-label" id="stat1-label">People directly supported</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-number" id="stat2-num">5+</span>
+            <span class="stat-label" id="stat2-label">Active programmes</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-number" id="stat3-num">2018</span>
+            <span class="stat-label" id="stat3-label">Year founded</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── ABOUT ── -->
+<section id="about" class="section">
+  <div class="container">
+    <div class="about-grid">
+      <div class="about-img-wrap">
+        <img src="./assets/images/BG_1.JPG" alt="GRAPAD team working with communities in Bukavu">
+        <div class="about-badge">
+          <strong>DRC</strong>
+          <span>South Kivu</span>
+        </div>
+      </div>
+      <div>
+        <span class="eyebrow" id="about-eyebrow">Who we are</span>
+        <h2 class="section-title" id="about-title">We help people rebuild — not from scratch, but from where they are.</h2>
+        <div class="divider"></div>
+        <p class="section-lead" id="about-p1">
+          GRAPAD asbl is a community-based organisation officially registered in the DRC, based in Bukavu, South Kivu. We specialise in the <strong>social reintegration of populations affected by armed conflict</strong> — children pulled from the streets, women rebuilding after loss, families displaced by war finding their way back to a normal life.
+        </p>
+        <p style="margin-top:16px; font-size:.95rem; color:var(--ink-soft); line-height:1.75;" id="about-p2">
+          Our motto says it plainly: <em>“Universal well-being means living for others.”</em> We do not work <em>for</em> these communities from the outside. We work <em>with</em> them — walking alongside the people war has disrupted, until they can walk on their own again.
+        </p>
+        <div class="about-areas">
+          <div class="area-tag">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>
+            Child protection
+          </div>
+          <div class="area-tag">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
+            Human rights
+          </div>
+          <div class="area-tag">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            Women's empowerment
+          </div>
+          <div class="area-tag">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>
+            Environment
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── VISION ── -->
+<section class="section section-alt">
+  <div class="container">
+    <div class="section-header section-header-centered">
+      <span class="eyebrow">Our direction</span>
+      <h2 class="section-title">Vision, mission and values</h2>
+      <div class="divider divider-centered"></div>
+      <p class="section-lead">A peaceful Africa where every person can fully realise their social, cultural and economic potential free from war and discrimination.</p>
+    </div>
+    <div class="vision-grid">
+      <div class="vision-card">
+        <div class="vision-icon">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+        </div>
+        <h3>Where we work</h3>
+        <p>Bukavu and Walungu, South Kivu, DRC with a broader presence across the Great Lakes region including Rwanda, Burundi and Uganda.</p>
+      </div>
+      <div class="vision-card">
+        <div class="vision-icon">
+          <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+        </div>
+        <h3>Our mission</h3>
+        <p>To enlighten public opinion, promote peace, protect human rights and support the most vulnerable particularly women and children affected by armed conflict.</p>
+      </div>
+      <div class="vision-card">
+        <div class="vision-icon">
+          <svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+        </div>
+        <h3>Our values</h3>
+        <p>Transparency, teamwork, compassion, equality. We are apolitical and non-denominational committed only to the dignity of every person.</p>
+      </div>
+    </div>
+  </div>
+</section>
 
 
-
-
-
-  <main>
-    <article class="article">
-
-      <!-- 
-        - #HERO
-      -->
-
-      <section id="home" class="section hero" aria-label="hero">
+      <!-- ── IMPACT NUMBERS ── -->
+      <section class="section" style="padding:48px 0;background:#071826;">
         <div class="container">
-
-          <div class="hero-bg">
-            <div class="hero-content">
-
-              <h1 class="h1 hero-title">
-                Groupe de reflexion<span class="span">et d'action pour la paix</span>et le development
-              </h1>
-
-              <p class="hero-text">
-                Together, let's protect people in need and the environment.
-              </p>
-              <br/>
-
-              <p class="hero-text">
-                "learn to do good; seek justice,rescue the oppressed,defend the orphan,plead for the widow. Isaiah 1:17"
-              </p>
-
+          <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:rgba(255,255,255,.08);border-radius:var(--radius-lg);overflow:hidden;">
+            <div style="background:rgba(255,255,255,.04);padding:32px 20px;text-align:center;">
+              <div style="font-family:var(--ff-display);font-size:2.4rem;font-weight:700;color:#50ade6;">62</div>
+              <div style="font-size:.82rem;color:rgba(255,255,255,.6);margin-top:6px;line-height:1.4;">Refugee women supported<br>in Goma (2025)</div>
+            </div>
+            <div style="background:rgba(255,255,255,.04);padding:32px 20px;text-align:center;">
+              <div style="font-family:var(--ff-display);font-size:2.4rem;font-weight:700;color:#ee127c;">100</div>
+              <div style="font-size:.82rem;color:rgba(255,255,255,.6);margin-top:6px;line-height:1.4;">Vulnerable children<br>reintegrated in schools (2025)</div>
+            </div>
+            <div style="background:rgba(255,255,255,.04);padding:32px 20px;text-align:center;">
+              <div style="font-family:var(--ff-display);font-size:2.4rem;font-weight:700;color:#50ade6;">250</div>
+              <div style="font-size:.82rem;color:rgba(255,255,255,.6);margin-top:6px;line-height:1.4;">Displaced children<br>received food aid (2026)</div>
+            </div>
+            <div style="background:rgba(255,255,255,.04);padding:32px 20px;text-align:center;">
+              <div style="font-family:var(--ff-display);font-size:2.4rem;font-weight:700;color:#ee127c;">5+</div>
+              <div style="font-size:.82rem;color:rgba(255,255,255,.6);margin-top:6px;line-height:1.4;">Active programmes<br>across South Kivu</div>
             </div>
           </div>
-
         </div>
       </section>
 
-
-
-
-
-      <!-- 
-        - #ABOUT
-      -->
-
-      <section id="about" class="section about" aria-label="about">
-        <div class="container">
-
-          <div class="about-banner img-holder" style="--width: 600; --height: 700;">
-            <img src="./assets/images/BG_2.PNG" width="600" height="700" loading="lazy" alt="about banner"
-              class="img-cover">
-
-          </div>
-
-          <div class="about-content">
-
-            <h2 class="h2 section-title">Better Live For Others</h2>
-
-            <p class="section-text">
-              GRAPAD is a non-profit association that brings together women, men, and young people under an indefinite mandate to enlighten and guide public opinion, aiming to promote peace and sustainable development in the Democratic Republic of Congo, Rwanda, Burundi, and Uganda. It intervenes in the following areas: 1. Protection of children, 2. Education and social communication, 3. Promotion of peace, human rights, and democracy, 4. Environmental protection, and 5. Fight against sexual and gender-based violence (SGBV).
-            </p>
-
-            <a href="#" class="btn btn-primary">Learn More</a>
-
-          </div>
-
-        </div>
-      </section>
-
-
-
-
-
-      <!-- 
-        - #SERVICE
-      -->
-
-      <section id="about" class="section service" aria-label="service">
-        <div class="container">
-
-          <h2 class="h2 section-title">Our Vision</h2>
-
-          <p class="section-text">
-            The vision of the organization is to promote the social, cultural, economic, and natural potential of Africans in an environment of peace, free from war, discrimination, and human rights violations.
-          </p>
-
-          <ul class="service-list">
-
-            <li>
-              <div class="service-card">
-
-                <div class="card-icon">
-                  <ion-icon name="briefcase-outline"></ion-icon>
-                </div>
-
-                <h3 class="h3 card-title">Range of action</h3>
-
-                <p class="card-text">
-                  The scope of action extends across the entire territory of the Democratic Republic of Congo, Rwanda, Burundi, and Uganda.
-                </p>
-
-              </div>
-            </li>
-
-            <li>
-              <div class="service-card">
-
-                <div class="card-icon">
-                  <ion-icon name="home-outline"></ion-icon>
-                </div>
-
-                <h3 class="h3 card-title">The overall objective</h3>
-
-                <p class="card-text">
-                  GRAPAD aims to enlighten and guide public opinion to promote peace and development in the Democratic Republic of Congo and its neighboring countries, particularly Rwanda, Burundi, and Uganda.
-                </p>
-
-              </div>
-            </li>
-
-            <li>
-              <div class="service-card">
-
-                <div class="card-icon">
-                  <ion-icon name="key"></ion-icon>
-                </div>
-
-                <h3 class="h3 card-title">Values</h3>
-
-                <p class="card-text">
-                  The GRAPAD organization is characterized by the following values:
-                  Transparency,
-                  Teamwork and compassion,
-                  Equality.
-                </p>
-
-              </div>
-            </li>
-
-          </ul>
-
-        </div>
-      </section>
-
-
-
-
-
-      <!-- 
-        - #PROPERTY
-      -->
-
-      <section id="causes" class="section property" aria-label="property">
-        <div class="container">
-
-          <h2 class="h2 section-title">You can see our cases</h2>
-
-          <p class="section-text">
-            Explore our latest causes that we work on.
-          </p>
-
-          <ul class="property-list">
-
-            <li>
-              <div class="property-card">
-
-                <figure class="card-banner img-holder" style="--width: 800; --height: 533;">
-                  <img src="./assets/images/BG_6.jpeg" width="800" height="533" loading="lazy"
-                    alt="59345 STONEWALL DR, Plaquemine, LA 70764, USA" class="img-cover">
-                </figure>
-
-                <div class="card-content">
-
-                  <h3 class="h3">
-                    <a href="#" class="card-title">Women and children suffer, living without hope for tomorrow due to the recurring wars.</a>
-                  </h3>
-
-                </div>
-
-              </div>
-            </li>
-
-            <li>
-              <div class="property-card">
-
-                <figure class="card-banner img-holder" style="--width: 800; --height: 533;">
-                  <img src="./assets/images/BG_3.jpeg" width="800" height="533" loading="lazy"
-                    alt="10765 Hillshire Ave, Baton Rouge, LA 70810, USA" class="img-cover">
-                </figure>
-
-                <div class="card-content">
-
-                  <h3 class="h3">
-                    <a href="#" class="card-title">Despite hosting 37,000 war-displaced households since January 20, 2023, North Kivu's Bulengo camp faces substandard conditions. Regrettably, 13,505 households have not received aid since December 2023 due to registration issues upon arrival.</a>
-                  </h3>
-
-                </div>
-
-              </div>
-            </li>
-
-            <li>
-              <div class="property-card">
-
-                <figure class="card-banner img-holder" style="--width: 800; --height: 533;">
-                  <img src="./assets/images/BG_7.jpeg" width="800" height="533" loading="lazy"
-                    alt="3723 SANDBAR DR, Addis, LA 70710, USA" class="img-cover">
-                </figure>
-
-                <div class="card-content">
-
-                  <h3 class="h3">
-                    <a href="#" class="card-title">Never again, no more war; the world yearns for peace. Join us and change the world together, fostering peace everywhere.</a>
-                  </h3>
-
-                </div>
-
-              </div>
-            </li>
-
-          </ul>
-
-        </div>
-      </section>
-
-
-      <section class="section service" aria-label="service">
-        <div class="container">
-
-          <h2 class="h2 section-title">Our Teams</h2>
-
-          <p class="section-text">
-            GRAPAD has determined individuals committed to achieving tangible results. It is apolitical, transcending borders and religions, comprising both Christians and non-religious members who are global citizens and advocates for peace.
-          </p>
-
-          <ul class="service-list">
-
-            <li>
-              <div class="service-card">
-
-                <div class="card-icon" style="background-color: var(--mint-cream);
-                width: 200px;
-                height: 200px;
-                display: grid;
-                place-items: center;
-                border-radius: 50%;
-                margin-inline: auto;">
-                  <img src="./assets/images/TEAM_1.png" style="border-radius: 50%;" alt="Girl in a jacket" width="200" height="200">
-                </div>
-
-                <h3 class="h3 card-title">Ngaboziluge Sumu Eddy</h3>
-
-                <p class="card-text">
-                  Founder and CEO
-                </p>
-
-              </div>
-            </li>
-
-            <li>
-              <div class="service-card">
-
-                <div class="card-icon" style="background-color: var(--mint-cream);
-                width: 200px;
-                height: 200px;
-                display: grid;
-                place-items: center;
-                border-radius: 50%;
-                margin-inline: auto;">
-                  <img src="./assets/images/TEAM_3.png" style="border-radius: 50%;" alt="Girl in a jacket" width="200" height="200">
-                </div>
-
-                <h3 class="h3 card-title">Rebekah Ann Cubaka</h3>
-
-                <p class="card-text">
-                  Founder & President of Administrative Committee in Australia
-                </p>
-
-              </div>
-            </li>
-
-            <li>
-              <div class="service-card">
-
-                <div class="card-icon" style="background-color: var(--mint-cream);
-                width: 200px;
-                height: 200px;
-                display: grid;
-                place-items: center;
-                border-radius: 50%;
-                margin-inline: auto;">
-                  <img src="./assets/images/TEAM_3_.png" style="border-radius: 50%;" alt="Girl in a jacket" width="200" height="200">
-                </div>
-
-                <h3 class="h3 card-title">Aganze Zihalirwa Guillaume</h3>
-
-                <p class="card-text">
-                  Vice President of the Administrative Committee
-                </p>
-
-              </div>
-            </li>
-
-            <li>
-              <div class="service-card">
-
-                <div class="card-icon" style="background-color: var(--mint-cream);
-                width: 200px;
-                height: 200px;
-                display: grid;
-                place-items: center;
-                border-radius: 50%;
-                margin-inline: auto;">
-                  <img src="./assets/images/TEAM_4.png" style="border-radius: 50%;" alt="Girl in a jacket" width="200" height="200">
-                </div>
-
-                <h3 class="h3 card-title">Bijaci Cubaka Benjamin </h3>
-
-                <p class="card-text">
-                  Foreign Affairs
-                </p>
-
-              </div>
-            </li>
-
-            <li>
-              <div class="service-card">
-
-                <div class="card-icon" style="background-color: var(--mint-cream);
-                width: 200px;
-                height: 200px;
-                display: grid;
-                place-items: center;
-                border-radius: 50%;
-                margin-inline: auto;">
-                  <img src="./assets/images/TEAM_5.png" style="border-radius: 50%;" alt="Girl in a jacket" width="200" height="200">
-                </div>
-
-                <h3 class="h3 card-title">Janissa Lorna Martin </h3>
-
-                <p class="card-text">
-                  Secretary in Australia
-                </p>
-
-              </div>
-            </li>
-
-            <li>
-              <div class="service-card">
-
-                <div class="card-icon" style="background-color: var(--mint-cream);
-                width: 200px;
-                height: 200px;
-                display: grid;
-                place-items: center;
-                border-radius: 50%;
-                margin-inline: auto;">
-                  <img src="./assets/images/TEAM_6.png" style="border-radius: 50%;" alt="Girl in a jacket" width="200" height="200">
-                </div>
-
-                <h3 class="h3 card-title">Ntagengwa Cirhura Aladin </h3>
-
-                <p class="card-text">
-                  Cashier
-                </p>
-
-              </div>
-            </li>
-
-            <li>
-              <div class="service-card">
-
-                <div class="card-icon" style="background-color: var(--mint-cream);
-                width: 200px;
-                height: 200px;
-                display: grid;
-                place-items: center;
-                border-radius: 50%;
-                margin-inline: auto;">
-                  <img src="./assets/images/TEAM_7.png" style="border-radius: 50%;" alt="Girl in a jacket" width="200" height="200">
-                </div>
-
-                <h3 class="h3 card-title">N’nama Ntugulo Valence </h3>
-
-                <p class="card-text">
-                  Secretary
-                </p>
-
-              </div>
-            </li>
-
-            <li>
-              <div class="service-card">
-
-                <div class="card-icon" style="background-color: var(--mint-cream);
-                width: 200px;
-                height: 200px;
-                display: grid;
-                place-items: center;
-                border-radius: 50%;
-                margin-inline: auto;">
-                  <img src="./assets/images/TEAM_8.png" style="border-radius: 50%;" alt="Girl in a jacket" width="200" height="200">
-                </div>
-
-                <h3 class="h3 card-title">Ngalo Sumu Ricardo </h3>
-
-                <p class="card-text">
-                  Accountant
-                </p>
-
-              </div>
-            </li>
-
-            <li>
-              <div class="service-card">
-
-                <div class="card-icon" style="background-color: var(--mint-cream);
-                width: 200px;
-                height: 200px;
-                display: grid;
-                place-items: center;
-                border-radius: 50%;
-                margin-inline: auto;">
-                  <img src="./assets/images/TEAM_9.png" style="border-radius: 50%;" alt="Girl in a jacket" width="200" height="200">
-                </div>
-
-                <h3 class="h3 card-title">Neema Ndege Marie </h3>
-
-                <p class="card-text">
-                  Administrator
-                </p>
-
-              </div>
-            </li>
-            <li>
-              <div class="service-card">
-
-                <div class="card-icon" style="background-color: var(--mint-cream);
-                width: 200px;
-                height: 200px;
-                display: grid;
-                place-items: center;
-                border-radius: 50%;
-                margin-inline: auto;">
-                  <img src="./assets/images/TEAM_10.png" style="border-radius: 50%;" alt="Girl in a jacket" width="200" height="200">
-                </div>
-
-                <h3 class="h3 card-title">AKONKWA Zahinda Cécile </h3>
-
-                <p class="card-text">
-                  Social Communication
-                </p>
-
-              </div>
-            </li>
-
-            <li>
-              <div class="service-card">
-
-                <div class="card-icon" style="background-color: var(--mint-cream);
-                width: 200px;
-                height: 200px;
-                display: grid;
-                place-items: center;
-                border-radius: 50%;
-                margin-inline: auto;">
-                  <img src="./assets/images/TEAM_11.png" style="border-radius: 50%;" alt="Girl in a jacket" width="200" height="200">
-                </div>
-
-                <h3 class="h3 card-title">Mugoli Renze Shimene </h3>
-
-                <p class="card-text">
-                  Gender Representative
-                </p>
-
-              </div>
-            </li>
-
-            <li>
-              <div class="service-card">
-
-                <div class="card-icon" style="background-color: var(--mint-cream);
-                width: 200px;
-                height: 200px;
-                display: grid;
-                place-items: center;
-                border-radius: 50%;
-                margin-inline: auto;">
-                  <img src="./assets/images/TEAM_12.png" style="border-radius: 50%;" alt="Girl in a jacket" width="200" height="200">
-                </div>
-
-                <h3 class="h3 card-title">Munguakonkwa Sumu Déo </h3>
-
-                <p class="card-text">
-                  Family Manager
-                </p>
-
-              </div>
-            </li>
-
-            <li>
-              <div class="service-card">
-
-                <div class="card-icon" style="background-color: var(--mint-cream);
-                width: 200px;
-                height: 200px;
-                display: grid;
-                place-items: center;
-                border-radius: 50%;
-                margin-inline: auto;">
-                  <img src="./assets/images/TEAM_13.png" style="border-radius: 50%;" alt="Girl in a jacket" width="200" height="200">
-                </div>
-
-                <h3 class="h3 card-title">Ciragane Judith </h3>
-
-                <p class="card-text">
-                  Ambassador of GRAPAD in France
-                </p>
-
-              </div>
-            </li>
-
-            <li>
-              <div class="service-card">
-
-                <div class="card-icon" style="background-color: var(--mint-cream);
-                width: 200px;
-                height: 200px;
-                display: grid;
-                place-items: center;
-                border-radius: 50%;
-                margin-inline: auto;">
-                  <img src="./assets/images/TEAM_14.png" style="border-radius: 50%;" alt="Girl in a jacket" width="200" height="200">
-                </div>
-
-                <h3 class="h3 card-title">David Namujimbo  </h3>
-
-                <p class="card-text">
-                  Researcher in Child and Adolescent Psychology
-                </p>
-
-              </div>
-            </li>
-
-            <li>
-              <div class="service-card">
-
-                <div class="card-icon" style="background-color: var(--mint-cream);
-                width: 200px;
-                height: 200px;
-                display: grid;
-                place-items: center;
-                border-radius: 50%;
-                margin-inline: auto;">
-                  <img src="./assets/images/TEAM_15.png" style="border-radius: 50%;" alt="Girl in a jacket" width="200" height="200">
-                </div>
-
-                <h3 class="h3 card-title">Saleh Salumu   </h3>
-
-                <p class="card-text">
-                  Chairman of the Administrative Committee in Ireland
-                </p>
-
-              </div>
-            </li>
-
-          </ul>
-
-        </div>
-      </section>
-
-
-      <section class="section service" aria-label="service">
-        <div class="container">
-
-          <h2 class="h2 section-title">Our Memory Texts</h2>
-
-          <p class="section-text">
-            14 You are the light of the world. A city set on a mountain cannot be hidden. 15 Nor do they light a lamp and then put it under a bushel basket; it is set on a lampstand, where it gives light to all in the house. Mathew 5:14-15
-          </p>
-
-         
-
-        </div>
-      </section>
-
-
-             
-
-      <section id="blog" class="section property" aria-label="property">
-        <div class="container">
-
-          <h2 class="h2 section-title">Our Blog</h2>
-
-          <p class="section-text">
-            GRAPAD believes in sharing smiles and hope with the destitute and the poorest. Here are some images showcasing our activities. Living for others is better.
-          </p>
-
-          <ul class="property-list">
-
-            <li>
-              <div class="property-card_1">
-
-                <figure class="card-banner img-holder" style="--width: 800; --height: 533;">
-                  <img src="./assets/images/BLOG_1 (1).jpeg" width="800" height="533" loading="lazy"
-                    alt="10765 Hillshire Ave, Baton Rouge, LA 70810, USA" class="img-cover" onclick="openFullImg(this.src)">
-                </figure>
-
-                
-
-              </div>
-            </li>
-
-            <li>
-              <div class="property-card_1">
-
-                <figure class="card-banner img-holder" style="--width: 800; --height: 533;">
-                  <img src="./assets/images/Blog_2.jpeg" width="800" height="533" loading="lazy"
-                    alt="10765 Hillshire Ave, Baton Rouge, LA 70810, USA" class="img-cover" onclick="openFullImg(this.src)">
-                </figure>
-
-              </div>
-            </li>
-
-            <li>
-              <div class="property-card_1">
-
-                <figure class="card-banner img-holder" style="--width: 800; --height: 533;">
-                  <img src="./assets/images/Blog_3.jpeg" width="800" height="533" loading="lazy"
-                    alt="3723 SANDBAR DR, Addis, LA 70710, USA" class="img-cover" onclick="openFullImg(this.src)">
-                </figure>
-
-
-              </div>
-            </li>
-
-            <li>
-              <div class="property-card_1">
-
-                <figure class="card-banner img-holder" style="--width: 800; --height: 533;">
-                  <img src="./assets/images/Blog_4.jpeg" width="800" height="533" loading="lazy"
-                    alt="LOT 21 ROYAL OAK DR, Prairieville, LA 70769, USA" class="img-cover" onclick="openFullImg(this.src)">
-                </figure>
-
-
-              </div>
-            </li>
-
-            <li>
-              <div class="property-card_1">
-
-                <figure class="card-banner img-holder" style="--width: 800; --height: 533;">
-                  <img src="./assets/images/Blog_5.jpeg" width="800" height="533" loading="lazy"
-                    alt="710 BOYD DR, Unit #1102, Baton Rouge, LA 70808, USA" class="img-cover" onclick="openFullImg(this.src)">
-                </figure>
-
-
-              </div>
-            </li>
-
-            <li>
-              <div class="property-card_1">
-
-                <figure class="card-banner img-holder" style="--width: 800; --height: 533;">
-                  <img src="./assets/images/blog_6.jpeg" width="800" height="533" loading="lazy"
-                    alt="5133 MCLAIN WAY, Baton Rouge, LA 70809, USA" class="img-cover" onclick="openFullImg(this.src)">
-                </figure>
-
-
-
-              </div>
-            </li>
-
-          </ul>
-
-        </div>
-      </section>
-
-
-
-      <!-- 
-        - #CONTACT
-      -->
-
-      <section class="section contact" aria-label="contact">
-        <div class="container">
-
-          <h2 class="h2 section-title">Have Question ? Get in touch!</h2>
-
-          <p class="section-text">
-            
-          </p>
-
-          <button class="btn btn-primary">
-            <ion-icon name="call-outline"></ion-icon>
-
-            <span class="span">Contact us</span>
-          </button>
-
-        </div>
-      </section>
-
-      
-
-
-
-
-      <!-- 
-        - #NEWSLETTER
-      -->
-
-      <section class="newsletter" aria-label="newsletter">
-        <div class="container">
-
-          <div class="wrapper">
-            <h2 class="h2 section-title">Subscribe to Newsletter!</h2>
-
-            <p class="section-text">Subscribe to get latest updates and information.</p>
-          </div>
-
-          <form action="" class="newsletter-form">
-            <input type="email" name="email_address" placeholder="Enter your email :" aria-label="Enter your email"
-              required class="email-field">
-
-            <button type="submit" class="btn btn-secondary">Subscribe</button>
-          </form>
-
-        </div>
-      </section>
-
-    </article>
-  </main>
-
-
-
-
-
-  <!-- 
-    - #FOOTER
-  -->
-
-  <footer id="contact" class="footer">
-
-    <div class="footer-top">
-      <div class="container">
-
-        <div class="footer-brand">
-
-          <a href="#" class="logo">
-            <img src="./assets/images/LOGO.png" style="border-radius: 50%;" alt="Girl in a jacket" width="80" height="80">
-          </a>
-
-          <p class="footer-text">
-            Groupe de réflexion et d’action pour la paix et le développement
-          </p>
-
-        </div>
-
-        <ul class="footer-list">
-
-          <li>
-            <p class="footer-list-title">Company</p>
-          </li>
-
-          <li>
-            <a href="#home" class="footer-link">
-              <ion-icon name="chevron-forward"></ion-icon>
-
-              <span class="span">Home</span>
-            </a>
-          </li>
-
-          <li>
-            <a href="#about" class="footer-link">
-              <ion-icon name="chevron-forward"></ion-icon>
-
-              <span class="span">About</span>
-            </a>
-          </li>
-
-          <li>
-            <a href="#causes" class="footer-link">
-              <ion-icon name="chevron-forward"></ion-icon>
-
-              <span class="span">Latest Causes</span>
-            </a>
-          </li>
-
-        </ul>
-
-        <ul class="footer-list">
-
-          <li>
-            <p class="footer-list-title">Useful Links</p>
-          </li>
-
-          <li>
-            <a href="#blog" class="footer-link">
-              <ion-icon name="chevron-forward"></ion-icon>
-
-              <span class="span">Blog</span>
-            </a>
-          </li>
-
-          <li>
-            <a href="#contact" class="footer-link">
-              <ion-icon name="chevron-forward"></ion-icon>
-
-              <span class="span">Contact</span>
-            </a>
-          </li>
-
-
-        </ul>
-
-        <ul class="footer-list">
-
-          <li>
-            <p class="footer-list-title">Contact Details</p>
-          </li>
-
-          <li class="footer-item">
-            <ion-icon name="location-outline"></ion-icon>
-
-            <address class="address">
-              Office address,<br>
-              Rwanda – Kigali Province – Gasabo District – Gisozi Sector – Murambi Cell –Ruhango Village<br>
-              <a href="#" class="address-link">View on Google map</a>
-            </address>
-          </li>
-
-          <li class="footer-item">
-            <ion-icon name="mail-outline"></ion-icon>
-
-            <a href="mailto:eddy.sumu96@gmail.com" class="footer-link">eddy.sumu96@gmail.com</a>
-          </li>
-
-          <li class="footer-item">
-            <ion-icon name="call-outline"></ion-icon>
-
-            <a href="tel:+250780368466" class="footer-link">+250 780-368-466</a>
-          </li>
-
-        </ul>
-
+<!-- ── PROGRAMMES ── -->
+<section id="programmes" class="section">
+  <div class="container">
+    <div class="section-header">
+      <span class="eyebrow">What we do</span>
+      <h2 class="section-title">Our Programmes</h2>
+      <div class="divider"></div>
+      <p class="section-lead">Each programme responds to a real and documented need in the communities we serve.</p>
+    </div>
+    <div class="programmes-grid">
+      <div class="programme-card">
+        <div class="programme-tag">Child protection &amp; Education</div>
+        <h3>Mupe Nafasi Shuleni</h3>
+        <p>Supporting children living on the streets reuniting them with their families and accompanying their return to school in South Kivu.</p>
+      </div>
+      <div class="programme-card">
+        <div class="programme-tag">Women's rights &amp; Protection</div>
+        <h3>Mwanamke, Simama na Nguvu Mpya</h3>
+        <p>"Woman, Rise with a New Strength" accompanying women survivors of armed conflict in Bukavu through psychosocial support, rights awareness and community advocacy.</p>
+      </div>
+      <div class="programme-card">
+        <div class="programme-tag">Food security &amp; Agriculture</div>
+        <h3>Semer pour Vivre</h3>
+        <p>Agricultural revival and food security for vulnerable households in Walungu territory, South Kivu helping families feed themselves with dignity.</p>
+      </div>
+      <div class="programme-card">
+        <div class="programme-tag">Environment</div>
+        <h3>ÉcoRenaissance Verte</h3>
+        <p>Environmental education and community action for a greener, healthier eastern DRC protecting the land that sustains future generations.</p>
       </div>
     </div>
+  </div>
+</section>
 
+<!-- ── CAUSES ── -->
+<section class="section section-alt">
+  <div class="container">
+    <div class="section-header section-header-centered">
+      <span class="eyebrow">Eastern DRC</span>
+      <h2 class="section-title">The reality on the ground</h2>
+      <div class="divider divider-centered"></div>
+      <p class="section-lead">In eastern DRC, the consequences of decades of armed conflict are visible every day. These are the realities that drive our work.</p>
+    </div>
+    <div class="causes-grid">
+      <div class="cause-card">
+        <img src="./assets/images/BG_6.jpeg" class="cause-img" alt="Women and children affected by conflict in eastern DRC" loading="lazy">
+        <div class="cause-body">
+          <p>Women and children bear the heaviest burden of the recurring wars in eastern DRC, often left with nothing when conflict strikes their families.</p>
+        </div>
+      </div>
+      <div class="cause-card">
+        <img src="./assets/images/BG_3.jpeg" class="cause-img" alt="Displaced families in South Kivu" loading="lazy">
+        <div class="cause-body">
+          <p>South Kivu hosts over 2.4 million internally displaced people. Many have received no assistance since their arrival in overcrowded sites.</p>
+        </div>
+      </div>
+      <div class="cause-card">
+        <img src="./assets/images/BG_7.jpeg" class="cause-img" alt="Community rebuilding in Bukavu" loading="lazy">
+        <div class="cause-body">
+          <p>Communities in South Kivu are rebuilding one family, one child, one act of solidarity at a time. GRAPAD walks alongside them.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── TEAM ── -->
+<section id="team" class="section">
+  <div class="container">
+    <div class="section-header">
+      <span class="eyebrow">The team</span>
+      <h2 class="section-title">Our Team</h2>
+      <div class="divider"></div>
+      <p class="section-lead">GRAPAD is built by committed individuals rooted in the communities they serve, driven by a shared belief that peace is built person by person.</p>
+    </div>
+
+    <div class="team-grid">
+
+      <div class="team-card team-card-featured">
+        <img src="./assets/images/TEAM_1.png" class="team-photo" alt="Ngaboziluge Sumu Eddy">
+        <div class="team-name">Ngaboziluge Sumu Eddy</div>
+        <div class="team-role">Founder &amp; National Coordinator</div>
+        <p class="team-bio">Sociologist and child protection specialist. Founded GRAPAD in 2018 with a vision of community-led peace in eastern DRC.</p>
+      </div>
+
+      <div class="team-card team-card-featured">
+        <img src="./assets/images/TEAM_11.png" class="team-photo" alt="Mugoli Renze Shimene">
+        <div class="team-name">Mugoli Renze Shimene</div>
+        <div class="team-role">Gender Officer</div>
+        <p class="team-bio">Works with women survivors of armed conflict in Bukavu, offering a space to be heard and supported. Coordinates <em>Mwanamke, Simama na Nguvu Mpya</em>.</p>
+      </div>
+
+      <div class="team-card team-card-featured">
+        <img src="./assets/images/TEAM_AUBINE.png" class="team-photo" alt="Aubine Kanyonyo Nyabarungu">
+        <div class="team-name">Aubine Kanyonyo Nyabarungu</div>
+        <div class="team-role">Programme Officer</div>
+        <p class="team-bio">Coordinates <em>Mupe Nafasi Shuleni</em>, reuniting children living on the streets with their families and supporting their return to school.</p>
+      </div>
+
+      <div class="team-card team-card-featured">
+        <img src="./assets/images/TEAM_KABALAMA.png" class="team-photo" alt="Mushagalusa Kabalama Jean-Claude">
+        <div class="team-name">Mushagalusa Kabalama Jean-Claude</div>
+        <div class="team-role">Field Officer &amp; Communication</div>
+        <p class="team-bio">Manages GRAPAD's field operations and community engagement. The voice of GRAPAD on the ground, connecting the organisation to the communities it serves.</p>
+      </div>
+
+      <div class="team-card">
+        <img src="./assets/images/TEAM_3.png" class="team-photo" alt="Rebekah Ann Cubaka">
+        <div class="team-name">Rebekah Ann Cubaka</div>
+        <div class="team-role">President, Administrative Committee</div>
+        <p class="team-bio">Oversees GRAPAD's governance from Australia, ensuring institutional integrity and long-term vision.</p>
+      </div>
+
+      <div class="team-card">
+        <img src="./assets/images/TEAM_VALENCE.png" class="team-photo" alt="N'nama Ntugulo Valence">
+        <div class="team-name">N'nama Ntugulo Valence</div>
+        <div class="team-role">Vice President, Administrative Committee</div>
+        <p class="team-bio">Supports GRAPAD's institutional leadership and coordination across programmes and partners in the DRC.</p>
+      </div>
+
+      <div class="team-card">
+        <img src="./assets/images/TEAM_10.png" class="team-photo" alt="Akonkwa Zahinda Cécile">
+        <div class="team-name">Akonkwa Zahinda Cécile</div>
+        <div class="team-role">Social Communication Officer</div>
+        <p class="team-bio">Manages communications and community outreach, ensuring GRAPAD's voice reaches those who need it.</p>
+      </div>
+
+      <div class="team-card">
+        <img src="./assets/images/TEAM_8.png" class="team-photo" alt="Ngalo Sumu Ricardo">
+        <div class="team-name">Ngalo Sumu Ricardo</div>
+        <div class="team-role">Accountant</div>
+        <p class="team-bio">Ensures financial transparency and sound management of all GRAPAD programmes and resources.</p>
+      </div>
+
+      <div class="team-card">
+        <img src="./assets/images/TEAM_4.png" class="team-photo" alt="Neema Ndege Marie">
+        <div class="team-name">Bijaci Cubaka Benjamin</div>
+        <div class="team-role">Administrator</div>
+        <p class="team-bio">Coordinates GRAPAD's internal operations and administrative support across all activities.</p>
+      </div>
+
+      <div class="team-card">
+        <img src="./assets/images/TEAM_14.png" class="team-photo" alt="David Namujimbo">
+        <div class="team-name">David Namujimbo</div>
+        <div class="team-role">Researcher</div>
+        <p class="team-bio">Specialist in child and adolescent psychology, supporting GRAPAD's child protection programmes.</p>
+      </div>
+
+      <div class="team-card">
+        <img src="./assets/images/TEAM_13.png" class="team-photo" alt="Ciragane Judith">
+        <div class="team-name">Ciragane Judith</div>
+        <div class="team-role">Representative, France</div>
+        <p class="team-bio">Represents GRAPAD in France, supporting visibility and partnership development in Europe.</p>
+      </div>
+
+      <div class="team-card">
+        <img src="./assets/images/TEAM_15.png" class="team-photo" alt="Saleh Salumu">
+        <div class="team-name">Saleh Salumu</div>
+        <div class="team-role">Chairman, Administrative Committee • Ireland</div>
+        <p class="team-bio">Provides leadership for GRAPAD's administrative committee and international governance.</p>
+      </div>
+
+      <div class="team-card">
+        <img src="./assets/images/TEAM_DEO.png" class="team-photo" alt="Munguakonkwa Sumu Déo">
+        <div class="team-name">Munguakonkwa Sumu Déo</div>
+        <div class="team-role">Family Manager</div>
+        <p class="team-bio">Supports the social and family reintegration process, ensuring that children and families receive sustained follow-up and care.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ── CTA BAND ── -->
+<section class="cta-band">
+  <div class="container">
+    <div class="cta-band-inner">
+      <h2 id="cta-text">Every contribution helps communities rebuild in eastern DRC.</h2>
+      <a href="https://www.paypal.com/donate/?hosted_button_id=NFENZFLJ8YL2S" class="btn-dark" id="cta-btn">
+        Support our work
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ── GALLERY ── -->
+      <section id="gallery" class="section section-alt">
+        <div class="container">
+          <div class="section-header">
+            <span class="eyebrow">From the field</span>
+            <h2 class="section-title">Our Activities</h2>
+            <div class="divider"></div>
+            <p class="section-lead">Real moments from our work on the ground Bukavu, Goma and Walungu.</p>
+          </div>
+
+          <div class="events-grid">
+
+            <!-- EVENT 1: Goma — Humanitarian support -->
+            <div class="event-block">
+              <div class="event-header">
+                <span class="event-tag pink">&#10084; Women &amp; Families</span>
+                <div class="event-meta">
+                  <div class="event-date">Goma, North Kivu, March 2025</div>
+                  <h3 class="event-title">Humanitarian Support for Displaced Women and Families</h3>
+                  <p class="event-desc">
+                    In March 2025, the GRAPAD team travelled to Goma to support <strong>62 displaced women and their families</strong> affected by the ongoing crisis in North Kivu. The team distributed essential kits and spent time listening, accompanying and documenting the situations of the most vulnerable. Every person reached was a step toward dignity restored.
+                  </p>
+                </div>
+              </div>
+              <div class="event-gallery cols-3">
+                <div class="gallery-item" onclick="openLightbox('./assets/images/Blog_2.jpeg')">
+                  <img src="./assets/images/Blog_2.jpeg" loading="lazy" alt="GRAPAD team distributing kits to displaced families in Goma, March 2025">
+                  <div class="gallery-overlay"><span>&#x1F50D; View</span></div>
+                </div>
+                <div class="gallery-item" onclick="openLightbox('./assets/images/Blog_5.jpeg')">
+                  <img src="./assets/images/Blog_5.jpeg" loading="lazy" alt="GRAPAD distributing essential supplies to a vulnerable woman, Goma">
+                  <div class="gallery-overlay"><span>&#x1F50D; View</span></div>
+                </div>
+                <div class="gallery-item" onclick="openLightbox('./assets/images/blog_6.jpeg')">
+                  <img src="./assets/images/blog_6.jpeg" loading="lazy" alt="GRAPAD team member handing a kit to a displaced mother, Goma 2025">
+                  <div class="gallery-overlay"><span>&#x1F50D; View</span></div>
+                </div>
+              </div>
+            </div>
+
+            <!-- EVENT 2: Street children and women community work -->
+            <div class="event-block">
+              <div class="event-header">
+                <span class="event-tag">&#127891; Child Protection &amp; Community</span>
+                <div class="event-meta">
+                  <div class="event-date">Bukavu, South Kivu, 2024 &ndash; 2025</div>
+                  <h3 class="event-title">Children, Women and Community, Everyday Work in Bukavu</h3>
+                  <p class="event-desc">
+                    Day after day, GRAPAD's team works alongside children living on the streets, mothers raising families alone, and communities trying to rebuild normal lives. These images capture ordinary moments of extraordinary commitment.
+                  </p>
+                </div>
+              </div>
+              <div class="event-gallery cols-2-3">
+                <div class="gallery-item" onclick="openLightbox('./assets/images/Blog_4.jpeg')">
+                  <img src="./assets/images/Blog_4.jpeg" loading="lazy" alt="GRAPAD team listening to women and families during a community visit, Bukavu">
+                  <div class="gallery-overlay"><span>&#x1F50D; View</span></div>
+                </div>
+                <div class="gallery-item" onclick="openLightbox('./assets/images/Blog_3.jpeg')">
+                  <img src="./assets/images/Blog_3.jpeg" loading="lazy" alt="GRAPAD accompanying street children during a reintegration visit, Bukavu">
+                  <div class="gallery-overlay"><span>&#x1F50D; View</span></div>
+                </div>
+                <div class="gallery-item" onclick="openLightbox('./assets/images/BLOG_1 (1).jpeg')">
+                  <img src="./assets/images/BLOG_1 (1).jpeg" loading="lazy" alt="GRAPAD team on a community field visit in South Kivu">
+                  <div class="gallery-overlay"><span>&#x1F50D; View</span></div>
+                </div>
+              </div>
+            </div>
+
+            <!-- EVENT 3: Environmental Fair -->
+            <div class="event-block">
+              <div class="event-header">
+                <span class="event-tag">&#127807; Environment</span>
+                <div class="event-meta">
+                  <div class="event-date">Bukavu, 2025</div>
+                  <h3 class="event-title">Environmental Innovation Fair, &ldquo;Bukavu Ville Verte&rdquo;</h3>
+                  <p class="event-desc">
+                    Invited by Swiss Cooperation and the environmental NGO consortium, GRAPAD presented its <strong>ÉcoRenaissance Verte</strong> programme at the "Foire des Idées Innovantes" showcasing its waste sorting and environmental education approach for South Kivu communities.
+                  </p>
+                </div>
+              </div>
+              <div class="event-gallery cols-3">
+                <div class="gallery-item" onclick="openLightbox('./assets/images/ACT_FOIRE_1.png')">
+                  <img src="./assets/images/ACT_FOIRE_1.png" loading="lazy" alt="GRAPAD team at the Bukavu Ville Verte environmental fair">
+                  <div class="gallery-overlay"><span>&#x1F50D; View</span></div>
+                </div>
+                <div class="gallery-item" onclick="openLightbox('./assets/images/ACT_FOIRE_2.png')">
+                  <img src="./assets/images/ACT_FOIRE_2.png" loading="lazy" alt="GRAPAD presenting ÉcoRenaissance Verte programme materials at the fair">
+                  <div class="gallery-overlay"><span>&#x1F50D; View</span></div>
+                </div>
+                <div class="gallery-item" onclick="openLightbox('./assets/images/ACT_FOIRE_3.png')">
+                  <img src="./assets/images/ACT_FOIRE_3.png" loading="lazy" alt="GRAPAD at the information stand, Bukavu environmental fair">
+                  <div class="gallery-overlay"><span>&#x1F50D; View</span></div>
+                </div>
+              </div>
+            </div>
+
+            <!-- EVENT 4: Walungu Field Mission -->
+            <div class="event-block">
+              <div class="event-header">
+                <span class="event-tag pink">&#127891; Child Protection</span>
+                <div class="event-meta">
+                  <div class="event-date">Walungu, South Kivu &mdash; 15 May 2026</div>
+                  <h3 class="event-title">Field Mission Walungu, Mupe Nafasi Shuleni</h3>
+                  <p class="event-desc">
+                    On 15 May 2026, the GRAPAD team went to Walungu. Not for a photo. To look these children in the eyes, hand them a kit, and tell them: <em>you matter. You are not forgotten.</em> <strong>80 pupils across 4 schools</strong> were reached, and <strong>20 new children identified</strong> for the next phase of reintegration.
+                  </p>
+                  <div class="event-quote">
+                    &ldquo;Abandoned children become adults in difficulty and the country falls behind. Let us learn to feed them, educate them, protect them and listen to them.&rdquo;
+                  </div>
+                </div>
+              </div>
+              <div class="event-gallery cols-2-3">
+                <div class="gallery-item" onclick="openLightbox('./assets/images/ACT_WALUNGU_1.png')">
+                  <img src="./assets/images/ACT_WALUNGU_1.png" loading="lazy" alt="GRAPAD team with 80 pupils at four schools in Walungu, May 2026">
+                  <div class="gallery-overlay"><span>&#x1F50D; View</span></div>
+                </div>
+                <div class="gallery-item" onclick="openLightbox('./assets/images/ACT_WALUNGU_2.png')">
+                  <img src="./assets/images/ACT_WALUNGU_2.png" loading="lazy" alt="GRAPAD team member with children after kit distribution, Walungu">
+                  <div class="gallery-overlay"><span>&#x1F50D; View</span></div>
+                </div>
+                <div class="gallery-item" onclick="openLightbox('./assets/images/ACT_WALUNGU_3.png')">
+                  <img src="./assets/images/ACT_WALUNGU_3.png" loading="lazy" alt="Children receiving kits from GRAPAD at school, Walungu 2026">
+                  <div class="gallery-overlay"><span>&#x1F50D; View</span></div>
+                </div>
+                <div class="gallery-item" onclick="openLightbox('./assets/images/ACT_WALUNGU_4.png')">
+                  <img src="./assets/images/ACT_WALUNGU_4.png" loading="lazy" alt="GRAPAD field agent registering children for school reintegration, Walungu">
+                  <div class="gallery-overlay"><span>&#x1F50D; View</span></div>
+                </div>
+                <div class="gallery-item" onclick="openLightbox('./assets/images/ACT_WALUNGU_5.png')">
+                  <img src="./assets/images/ACT_WALUNGU_5.png" loading="lazy" alt="GRAPAD agent with child during assessment in Walungu school">
+                  <div class="gallery-overlay"><span>&#x1F50D; View</span></div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      <!-- ── CONTACT ── -->
+<section id="contact" class="section">
+  <div class="container">
+    <div class="contact-grid">
+      <div>
+        <span class="eyebrow">Reach us</span>
+        <h2 class="section-title" id="contact-title">Get in touch</h2>
+        <div class="divider"></div>
+        <p class="section-lead" id="contact-lead" style="margin-bottom:24px;">We are based in Bukavu, South Kivu, DRC. We welcome partnerships, questions and collaboration requests.</p>
+        <p style="font-size:.82rem;color:var(--ink-muted);margin-bottom:32px;padding:10px 16px;background:var(--cream);border-radius:8px;border-left:3px solid var(--teal);">✓ Officially registered NGO in the DRC  •  ✓ Founded 2018  •  ✓ Active in South Kivu and Great Lakes region</p>
+
+        <div class="contact-info">
+          <div class="contact-item">
+            <div class="contact-icon">
+              <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            </div>
+            <div>
+              <div class="contact-item-title">Address</div>
+              <div class="contact-item-value">Av. Isecof N°51, Ndendere, Ibanda<br>Bukavu, South Kivu, DRC</div>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-icon">
+              <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            </div>
+            <div>
+              <div class="contact-item-title">Email</div>
+              <div class="contact-item-value"><a href="mailto:grapadasbl@gmail.com">grapadasbl@gmail.com</a></div>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-icon">
+              <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13 19.79 19.79 0 0 1 1.61 4.38 2 2 0 0 1 3.6 2.18h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L7.91 9.91a16 16 0 0 0 6.18 6.18l1.09-1.09a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+            </div>
+            <div>
+              <div class="contact-item-title">Phone</div>
+              <div class="contact-item-value"><a href="tel:+243962790134">+243 962 790 134</a></div>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+            </div>
+            <div style="width:100%;">
+              <div class="contact-item-title">Follow us</div>
+              <div class="social-grid">
+                <a href="https://www.facebook.com/profile.php?id=100090953365500" class="social-card" aria-label="Facebook" target="_blank" rel="noopener">
+                  <div class="social-card-icon" style="background:#1877f2;">
+                    <svg viewBox="0 0 24 24" fill="white" width="20" height="20"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+                  </div>
+                  <div class="social-card-info">
+                    <span class="social-card-name">Facebook</span>
+                    <span class="social-card-handle">GRAPAD asbl</span>
+                  </div>
+                  <svg class="social-card-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" width="14" height="14"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                </a>
+                <a href="https://www.instagram.com/grapad_8376" class="social-card" aria-label="Instagram" target="_blank" rel="noopener">
+                  <div class="social-card-icon" style="background:linear-gradient(45deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888);">
+                    <svg viewBox="0 0 24 24" fill="white" width="20" height="20"><rect x="2" y="2" width="20" height="20" rx="5" ry="5" fill="none" stroke="white" stroke-width="2"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" fill="none" stroke="white" stroke-width="2"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5" stroke="white" stroke-width="2.5" stroke-linecap="round"/></svg>
+                  </div>
+                  <div class="social-card-info">
+                    <span class="social-card-name">Instagram</span>
+                    <span class="social-card-handle">@grapad_8376</span>
+                  </div>
+                  <svg class="social-card-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" width="14" height="14"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                </a>
+                <a href="https://www.linkedin.com/in/grapad-asbl-1091362b9" class="social-card" aria-label="LinkedIn" target="_blank" rel="noopener">
+                  <div class="social-card-icon" style="background:#0a66c2;">
+                    <svg viewBox="0 0 24 24" fill="white" width="20" height="20"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+                  </div>
+                  <div class="social-card-info">
+                    <span class="social-card-name">LinkedIn</span>
+                    <span class="social-card-handle">GRAPAD asbl</span>
+                  </div>
+                  <svg class="social-card-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" width="14" height="14"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                </a>
+                <a href="https://www.tiktok.com/@grapad_asbl" class="social-card" aria-label="TikTok" target="_blank" rel="noopener">
+                  <div class="social-card-icon" style="background:#010101;">
+                    <svg viewBox="0 0 24 24" fill="white" width="20" height="20"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1V9.01a6.34 6.34 0 0 0-.79-.05 6.34 6.34 0 0 0-6.34 6.34 6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.33-6.34V8.69a8.18 8.18 0 0 0 4.78 1.52V6.76a4.85 4.85 0 0 1-1.01-.07z"/></svg>
+                  </div>
+                  <div class="social-card-info">
+                    <span class="social-card-name">TikTok</span>
+                    <span class="social-card-handle">@grapad_asbl</span>
+                  </div>
+                  <svg class="social-card-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" width="14" height="14"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="contact-cta">
+        <h3 id="contact-cta-title">Send us a message</h3>
+        <p id="contact-cta-p" style="margin-bottom:20px;">Whether you are a donor, a partner organisation or a volunteer — we read every message and reply within 48 hours.</p>
+        <a href="mailto:grapadasbl@gmail.com" class="btn-white" id="contact-cta-btn">
+          Write to us
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── FOOTER ── -->
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <img src="./assets/images/LOGO.png" alt="GRAPAD asbl">
+        <strong>GRAPAD asbl</strong>
+        <p>Groupe de Réflexion et d'Action pour la Paix et le Développement.<br>Founded 2018 Officially registered in the DRC.<br>Working for peace, human rights and community development in eastern DRC.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Navigation</h4>
+        <div class="footer-links">
+          <a href="#about" id="nav-about">About</a>
+          <a href="#programmes" id="nav-programmes">Programmes</a>
+          <a href="#team" id="nav-team">Team</a>
+          <a href="#gallery" id="nav-activities">Activities</a>
+          <a href="#contact" id="nav-contact">Contact</a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <div class="footer-links">
+          <a href="mailto:grapadasbl@gmail.com">grapadasbl@gmail.com</a>
+          <a href="tel:+243962790134">+243 962 790 134</a>
+          <a href="#">Bukavu, South Kivu, DRC</a>
+        </div>
+      </div>
+    </div>
     <div class="footer-bottom">
-      <div class="container">
-
-        <p class="copyright">
-          &copy; 2024 GRAPAD. All Right Reserved<a href="#" class="copyright-link"></a>.
-        </p>
-
-        <ul class="social-list">
-
-          <li>
-            <a href="https://www.facebook.com/profile.php?id=100090953365500&mibextid=LQQJ4d" class="social-link">
-              <ion-icon name="logo-facebook"></ion-icon>
-            </a>
-          </li>
-
-          <li>
-            <a href="https://www.instagram.com/grapad_8376?igsh=OGQ5ZDc2ODk2ZA==" class="social-link">
-              <ion-icon name="logo-instagram"></ion-icon>
-            </a>
-          </li>
-
-
-          <li>
-            <a href="https://www.linkedin.com/in/grapad-asbl-1091362b9?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app" class="social-link">
-              <ion-icon name="logo-linkedin"></ion-icon>
-            </a>
-          </li>
-
-        </ul>
-
-      </div>
+      <p id="footer-copy"></p>
+      <p>Bukavu, South Kivu, Democratic Republic of Congo</p>
     </div>
+  </div>
+</footer>
 
-  </footer>
+<!-- Back to top -->
+<a href="#home" class="back-to-top" id="back-to-top" aria-label="Back to top">
+  <svg viewBox="0 0 24 24"><polyline points="18 15 12 9 6 15"/></svg>
+</a>
 
-
-
-
-
-  <!-- 
-    - #BACK TO TOP
-  -->
-
-  <a href="#top" class="back-top-btn" aria-label="back to top" data-back-top-btn>
-    <ion-icon name="arrow-up" aria-hidden="true"></ion-icon>
-  </a>
+<script>
 
 
+  // ── CONTACT FORM — sends directly via Formspree ──────────────
+  const contactForm = document.getElementById('contact-form');
+  if (contactForm) {
+    contactForm.addEventListener('submit', async function(e) {
+      e.preventDefault();
 
+      const nameEl    = document.getElementById('cf-name');
+      const emailEl   = document.getElementById('cf-email');
+      const messageEl = document.getElementById('cf-message');
+      const subjectEl = document.getElementById('cf-subject');
+      const btnSend   = document.getElementById('btn-send');
+      const successEl = document.getElementById('form-success');
+      const errorBanner = document.getElementById('form-send-error');
 
+      // ── Validate ──
+      let valid = true;
+      ['fg-name','fg-email','fg-message'].forEach(id => {
+        document.getElementById(id).classList.remove('has-error');
+      });
+      if (!nameEl.value.trim()) {
+        document.getElementById('fg-name').classList.add('has-error'); valid = false;
+      }
+      if (!emailEl.value.trim() || !/^[^@]+@[^@]+\.[^@]+$/.test(emailEl.value)) {
+        document.getElementById('fg-email').classList.add('has-error'); valid = false;
+      }
+      if (!messageEl.value.trim()) {
+        document.getElementById('fg-message').classList.add('has-error'); valid = false;
+      }
+      if (!valid) return;
 
-  <!-- 
-    - custom js link
-  -->
-  <script src="./assets/js/script.js" defer></script>
+      // ── Send via Formspree ──
+      btnSend.disabled = true;
+      btnSend.innerHTML = '<svg viewBox="0 0 24 24" width="18" height="18" style="animation:spin .8s linear infinite;stroke:currentColor;fill:none;stroke-width:2.5"><circle cx="12" cy="12" r="10" stroke-dasharray="60" stroke-dashoffset="20"/></svg> Sending...';
+      if (errorBanner) errorBanner.style.display = 'none';
 
-  <!-- 
-    - ionicon link
-  -->
-  <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
-  <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+      try {
+        const res = await fetch('https://formspree.io/f/xpwrjwqv', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+          body: JSON.stringify({
+            name:    nameEl.value.trim(),
+            email:   emailEl.value.trim(),
+            subject: subjectEl.value || 'General enquiry',
+            message: messageEl.value.trim(),
+            _replyto: emailEl.value.trim(),
+          })
+        });
 
-  <script>
+        if (res.ok) {
+          // Success
+          contactForm.style.display = 'none';
+          document.getElementById('confirm-email').textContent = emailEl.value.trim();
+          successEl.classList.add('show');
+        } else {
+          throw new Error('Server error');
+        }
+      } catch(err) {
+        // Error state
+        btnSend.disabled = false;
+        btnSend.innerHTML = 'Send message <svg viewBox="0 0 24 24" width="16" height="16" style="stroke:currentColor;fill:none;stroke-width:2.5;stroke-linecap:round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>';
+        if (errorBanner) errorBanner.style.display = 'block';
+      }
+    });
+  }
 
-    var fullImgBox = document.getElementById("fullImgBox");
-    var fullImg = document.getElementById("fullImg");
+  // ── LANGUAGE DROPDOWN TOGGLE ──
+  const langSwitcher = document.getElementById('lang-switcher');
+  const langTrigger  = document.getElementById('lang-trigger');
 
-    function openFullImg(pic) {
-      fullImgBox.style.display = "flex";
-      fullImg.src = pic;
+  function closeLangDropdown() {
+    langSwitcher.classList.remove('open');
+    langTrigger.setAttribute('aria-expanded', 'false');
+  }
+  langTrigger.addEventListener('click', (e) => {
+    e.stopPropagation();
+    const isOpen = langSwitcher.classList.toggle('open');
+    langTrigger.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+  });
+  document.addEventListener('click', (e) => {
+    if (!langSwitcher.contains(e.target)) closeLangDropdown();
+  });
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') closeLangDropdown();
+  });
+
+  // Mobile nav toggle
+  const toggle = document.getElementById('nav-toggle');
+  const nav = document.getElementById('main-nav');
+  toggle.addEventListener('click', () => {
+    nav.classList.toggle('open');
+  });
+  // Close nav on link click
+  nav.querySelectorAll('a').forEach(a => {
+    a.addEventListener('click', () => nav.classList.remove('open'));
+  });
+
+  // Lightbox
+  function openLightbox(src) {
+    document.getElementById('lightbox-img').src = src;
+    document.getElementById('lightbox').classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeLightbox(e) {
+    if (!e || e.target !== document.getElementById('lightbox-img')) {
+      document.getElementById('lightbox').classList.remove('open');
+      document.body.style.overflow = '';
     }
+  }
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
 
-    function closeFullImg() {
-      fullImgBox.style.display = "none";  
+  // Back to top
+  const btt = document.getElementById('back-to-top');
+  window.addEventListener('scroll', () => {
+    btt.classList.toggle('visible', window.scrollY > 400);
+  }, { passive: true });
+
+  // ── TRANSLATIONS ──────────────────────────────────────────────
+  const TRANSLATIONS = {
+    en: {
+      nav_about:"About",nav_programmes:"Programmes",nav_team:"Team",nav_activities:"Activities",nav_contact:"Contact",nav_donate:"Donate",
+      hero_eyebrow:"Bukavu, South Kivu, DRC — Since 2018",
+      hero_title:"We walk alongside those <em>war has torn</em><br>from their normal lives.",
+      hero_sub:"GRAPAD asbl specialises in the <strong style=\"color:#fff;font-weight:600;\">social reintegration</strong> of populations affected by armed conflict — children, women and displaced families — so they can rebuild their lives with dignity.",
+      hero_motto:"“Universal well-being means living for others.”",
+      hero_btn1:"Our Programmes",hero_btn2:"Get in touch",
+      hero_quote:"“Learn to do good; seek justice, rescue the oppressed,<br>defend the orphan, plead for the widow.” — Isaiah 1:17",
+      stat1_num:"200+",stat1_label:"People supported in 2025",
+      stat2_num:"5+",stat2_label:"Active programmes",
+      stat3_num:"2018",stat3_label:"Year founded",
+      about_eyebrow:"Who we are",
+      about_title:"We help people rebuild — not from scratch, but from where they are.",
+      about_p1:"GRAPAD asbl is a community-based organisation officially registered in the DRC, based in Bukavu, South Kivu. We specialise in the <strong>social reintegration of populations affected by armed conflict</strong> — children pulled from the streets, women rebuilding after loss, families displaced by war finding their way back to a normal life.",
+      about_p2:"Our motto says it plainly: <em>“Universal well-being means living for others.”</em> We do not work <em>for</em> these communities from the outside. We work <em>with</em> them — walking alongside the people war has disrupted, until they can walk on their own again.",
+      cta_text:"Every contribution helps communities rebuild in eastern DRC.",cta_btn:"Support our work",
+      contact_title:"Get in touch",contact_lead:"We are based in Bukavu, South Kivu, DRC. We welcome partnerships, questions and collaboration requests.",
+      contact_cta_title:"Partner with GRAPAD",contact_cta_p:"We are always looking for partners who share our commitment to peace and community development in eastern DRC.",contact_cta_btn:"Write to us",
+      footer_copy:"© 2025 GRAPAD asbl. All rights reserved.",
+    },
+    fr: {
+      nav_about:"À propos",nav_programmes:"Programmes",nav_team:"Équipe",nav_activities:"Activités",nav_contact:"Contact",nav_donate:"Faire un don",
+      hero_eyebrow:"Réinsertion sociale • Droits humains • Est de la RDC",
+      hero_title:"Nous marchons aux côtés de ceux que <em>la guerre a arrachés</em><br>à leur vie normale.",
+      hero_sub:"GRAPAD asbl est spécialisée dans la <strong style=\"color:#fff;font-weight:600;\">réinsertion sociale</strong> des populations affectées par les conflits armés enfants, femmes et familles déplacées pour qu’elles reconstruisent leur vie avec dignité à l’est de la RDC.",
+      hero_motto:"« Le bien-être universel, c’est vivre pour les autres. »",
+      hero_btn1:"Nos Programmes",hero_btn2:"Nous contacter",
+      hero_quote:"« Apprenez à faire le bien, recherchez la justice, protégez l’opprimé,<br>défendez l’orphelin, plaidez la cause de la veuve. » Ésaïe 1:17",
+      stat1_num:"200+",stat1_label:"Personnes accompagnées en 2025",
+      stat2_num:"5+",stat2_label:"Programmes actifs",
+      stat3_num:"2018",stat3_label:"Année de fondation",
+      about_eyebrow:"Qui sommes-nous",
+      about_title:"Nous aidons les gens à se reconstruire là où ils en sont.",
+      about_p1:"GRAPAD asbl est une organisation communautaire officiellement enregistrée en RDC, basée à Bukavu, Sud-Kivu. Nous sommes spécialisés dans la <strong>réinsertion sociale des populations affectées par les conflits armés</strong> enfants sortis de la rue, femmes reconstruisant leur vie, familles déplacées retrouvant un chemin vers une vie normale.",
+      about_p2:"Notre devise le dit simplement : <em>« Le bien-être universel, c’est vivre pour les autres. »</em> Nous ne travaillons pas <em>pour</em> ces communautés de l’extérieur. Nous travaillons <em>avec</em> elles marchant aux côtés de ceux que la guerre a bouscu lés, jusqu’à ce qu’ils puissent marcher seuls à nouveau.",
+      cta_text:"Chaque contribution aide des communautés à se reconstruire à l’est de la RDC.",cta_btn:"Soutenir notre travail",
+      contact_title:"Nous contacter",contact_lead:"Nous sommes basés à Bukavu, Sud-Kivu, RDC. Nous accueillons les partenariats, questions et demandes de collaboration.",
+      contact_cta_title:"Partenariat avec GRAPAD",contact_cta_p:"Nous recherchons des partenaires qui partagent notre engagement pour la paix et le développement communautaire en RDC.",contact_cta_btn:"Nous écrire",
+      footer_copy:"© 2025 GRAPAD asbl. Tous droits réservés.",
+    },
+    es: {
+      nav_about:"Quiénes somos",nav_programmes:"Programas",nav_team:"Equipo",nav_activities:"Actividades",nav_contact:"Contacto",nav_donate:"Donar",
+      hero_eyebrow:"Bukavu, Kivu del Sur, RDC — Desde 2018",
+      hero_title:"Caminamos junto a quienes <em>la guerra arrojó</em><br>fuera de su vida normal.",
+      hero_sub:"GRAPAD asbl está especializada en la <strong style=\"color:#fff;font-weight:600;\">reinserción social</strong> de poblaciones afectadas por conflictos armados — niños, mujeres y familias desplazadas — para que reconstruyan sus vidas con dignidad.",
+      hero_motto:"“El bienestar universal significa vivir para los demás.”",
+      hero_btn1:"Nuestros Programas",hero_btn2:"Contáctenos",
+      hero_quote:"“Aprendan a hacer el bien; busquen la justicia, protejan al oprimido,<br>defiendan al huérfano, aboguen por la viuda.” — Isaías 1:17",
+      stat1_num:"200+",stat1_label:"Personas apoyadas en 2025",stat2_num:"5+",stat2_label:"Programas activos",stat3_num:"2018",stat3_label:"Año de fundación",
+      about_eyebrow:"Quiénes somos",about_title:"Ayudamos a las personas a reconstruirse — desde donde están.",
+      about_p1:"GRAPAD asbl es una organización registrada en la RDC con sede en Bukavu. Nos especializamos en la <strong>reinserción social de poblaciones afectadas por conflictos armados</strong> — niños de la calle, mujeres reconstruyendo sus vidas, familias desplazadas.",
+      about_p2:"Nuestro lema lo dice claramente: <em>“El bienestar universal significa vivir para los demás.”</em> Trabajamos <em>con</em> estas comunidades — caminando junto a quienes la guerra ha trastornado.",
+      cta_text:"Cada contribución ayuda a las comunidades a reconstruirse en el este de la RDC.",cta_btn:"Apoyar nuestro trabajo",
+      contact_title:"Contáctenos",contact_lead:"Estamos en Bukavu, Kivu del Sur, RDC. Acogemos colaboraciones y solicitudes de asociación.",
+      contact_cta_title:"Alianza con GRAPAD",contact_cta_p:"Buscamos socios que compartan nuestro compromiso con la paz y el desarrollo comunitario.",contact_cta_btn:"Escríbanos",
+      footer_copy:"© 2025 GRAPAD asbl. Todos los derechos reservados.",
+    },
+    de: {
+      nav_about:"Über uns",nav_programmes:"Programme",nav_team:"Team",nav_activities:"Aktivitäten",nav_contact:"Kontakt",nav_donate:"Spenden",
+      hero_eyebrow:"Bukavu, Süd-Kivu, DRK — Seit 2018",
+      hero_title:"Wir begleiten Menschen, die <em>der Krieg</em><br>aus ihrem Leben gerissen hat.",
+      hero_sub:"GRAPAD asbl ist spezialisiert auf die <strong style=\"color:#fff;font-weight:600;\">soziale Wiedereingliederung</strong> von Menschen, die von Konflikten betroffen sind — Kinder, Frauen und Vertriebene.",
+      hero_motto:"„Allgemeines Wohlbefinden bedeutet, für andere zu leben.“",
+      hero_btn1:"Unsere Programme",hero_btn2:"Kontakt aufnehmen",
+      hero_quote:"„Lernt Gutes zu tun, sorgt für Recht, helft den Unterdrückten,<br>schafft Waisen Recht, führt den Rechtsstreit der Witwen.“ — Jesaja 1:17",
+      stat1_num:"200+",stat1_label:"Unterstützte Personen 2025",stat2_num:"5+",stat2_label:"Aktive Programme",stat3_num:"2018",stat3_label:"Gründungsjahr",
+      about_eyebrow:"Wer wir sind",about_title:"Wir helfen Menschen, sich neu aufzubauen — dort, wo sie gerade stehen.",
+      about_p1:"GRAPAD asbl ist spezialisiert auf die <strong>soziale Wiedereingliederung von Menschen, die von Konflikten betroffen sind</strong> — Kinder, Frauen und vertriebene Familien in Bukavu.",
+      about_p2:"Unser Motto: <em>„Allgemeines Wohlbefinden bedeutet, für andere zu leben.“</em> Wir arbeiten <em>mit</em> diesen Gemeinschaften — an der Seite derer, die der Krieg aus der Bahn geworfen hat.",
+      cta_text:"Jeder Beitrag hilft Gemeinschaften beim Wiederaufbau im Osten der DRK.",cta_btn:"Unsere Arbeit unterstützen",
+      contact_title:"Kontakt",contact_lead:"Wir sind in Bukavu, Süd-Kivu, DRK tätig. Anfragen zu Partnerschaften willkommen.",
+      contact_cta_title:"Partnerschaft mit GRAPAD",contact_cta_p:"Wir suchen Partner, die unser Engagement für Frieden und Gemeinschaftsentwicklung teilen.",contact_cta_btn:"Schreiben Sie uns",
+      footer_copy:"© 2025 GRAPAD asbl. Alle Rechte vorbehalten.",
+    },
+    it: {
+      nav_about:"Chi siamo",nav_programmes:"Programmi",nav_team:"Team",nav_activities:"Attività",nav_contact:"Contatti",nav_donate:"Donare",
+      hero_eyebrow:"Bukavu, Sud Kivu, RDC — Dal 2018",
+      hero_title:"Camminiamo accanto a chi <em>la guerra ha strappato</em><br>dalla propria vita normale.",
+      hero_sub:"GRAPAD asbl è specializzata nel <strong style=\"color:#fff;font-weight:600;\">reinserimento sociale</strong> delle popolazioni colpite da conflitti armati — bambini, donne e famiglie sfollate.",
+      hero_motto:"“Il benessere universale significa vivere per gli altri.”",
+      hero_btn1:"I Nostri Programmi",hero_btn2:"Contattaci",
+      hero_quote:"“Imparate a fare il bene; cercate la giustizia, soccorrete l’oppresso,<br>rendete giustizia all’orfano, difendete la causa della vedova.” — Isaia 1:17",
+      stat1_num:"200+",stat1_label:"Persone accompagnate nel 2025",stat2_num:"5+",stat2_label:"Programmi attivi",stat3_num:"2018",stat3_label:"Anno di fondazione",
+      about_eyebrow:"Chi siamo",about_title:"Aiutiamo le persone a ricostruirsi — a partire da dove si trovano.",
+      about_p1:"GRAPAD asbl è specializzata nel <strong>reinserimento sociale delle popolazioni colpite da conflitti armati</strong> — bambini, donne e famiglie sfollate a Bukavu.",
+      about_p2:"Il nostro motto: <em>“Il benessere universale significa vivere per gli altri.”</em> Lavoriamo <em>con</em> queste comunità — camminando accanto a chi la guerra ha sconvolto.",
+      cta_text:"Ogni contributo aiuta le comunità a ricostruirsi nell’est della RDC.",cta_btn:"Sostieni il nostro lavoro",
+      contact_title:"Contattaci",contact_lead:"Siamo a Bukavu, Sud Kivu, RDC. Accogliamo partnership e richieste di collaborazione.",
+      contact_cta_title:"Partner con GRAPAD",contact_cta_p:"Cerchiamo partner che condividano il nostro impegno per la pace nella RDC.",contact_cta_btn:"Scrivici",
+      footer_copy:"© 2025 GRAPAD asbl. Tutti i diritti riservati.",
+    },
+    sw: {
+      nav_about:"Kuhusu",nav_programmes:"Mipango",nav_team:"Timu",nav_activities:"Shughuli",nav_contact:"Wasiliana",nav_donate:"Changia",
+      hero_eyebrow:"Bukavu, Kivu Kusini, DRC — Tangu 2018",
+      hero_title:"Tunaambatana na wale ambao <em>vita vimewanyang’anya</em><br>maisha yao ya kawaida.",
+      hero_sub:"GRAPAD asbl inajishughulisha na <strong style=\"color:#fff;font-weight:600;\">kuwarudisha jamii</strong> watu walioathiriwa na migogoro — watoto, wanawake na familia zilizolazimishwa kuhama.",
+      hero_motto:"“Ustawi wa ulimwengu unamaanisha kuishi kwa ajili ya wengine.”",
+      hero_btn1:"Mipango Yetu",hero_btn2:"Wasiliana Nasi",
+      hero_quote:"“Jifunzeni kutenda mema; tafuteni haki, msaidieni aliyeonewa,<br>tetea yatima, utetee mjane.” — Isaya 1:17",
+      stat1_num:"200+",stat1_label:"Watu waliosaidiwa 2025",stat2_num:"5+",stat2_label:"Mipango inayofanya kazi",stat3_num:"2018",stat3_label:"Mwaka wa kuanzishwa",
+      about_eyebrow:"Sisi ni nani",about_title:"Tunasaidia watu kujijenga upya — kutoka mahali walipo.",
+      about_p1:"GRAPAD asbl inajishughulisha na <strong>kuwarudisha jamii watu walioathiriwa na migogoro</strong> — watoto kutoka mitaani, wanawake, familia zilizolazimishwa kuhama Bukavu.",
+      about_p2:"Kauli mbiu yetu: <em>“Ustawi wa ulimwengu unamaanisha kuishi kwa ajili ya wengine.”</em> Tunafanya kazi <em>pamoja na</em> jamii hizi — tunaambatana na wale ambao vita viliwavuruga.",
+      cta_text:"Kila mchango unasaidia jamii kujijenga upya mashariki mwa DRC.",cta_btn:"Saidia kazi yetu",
+      contact_title:"Wasiliana nasi",contact_lead:"Tuko Bukavu, Kivu Kusini, DRC. Tunakaribisha ushirikiano na ombi la kufanya kazi pamoja.",
+      contact_cta_title:"Ushirikiano na GRAPAD",contact_cta_p:"Tunatafuta washirika wanaoshiriki dhamira yetu ya amani na maendeleo ya jamii.",contact_cta_btn:"Tuandikie",
+      footer_copy:"© 2025 GRAPAD asbl. Haki zote zimehifadhiwa.",
     }
+  };
 
-  </script>
+  const T_MAP = [
+    ['#nav-about','nav_about'],['#nav-programmes','nav_programmes'],['#nav-team','nav_team'],
+    ['#nav-activities','nav_activities'],['#nav-contact','nav_contact'],['#nav-donate','nav_donate'],
+    ['#hero-eyebrow','hero_eyebrow'],['#hero-title','hero_title'],['#hero-sub','hero_sub'],
+    ['#hero-motto','hero_motto'],['#hero-btn1','hero_btn1'],['#hero-btn2','hero_btn2'],
+    ['#hero-quote','hero_quote'],['#stat1-num','stat1_num'],['#stat1-label','stat1_label'],
+    ['#stat2-num','stat2_num'],['#stat2-label','stat2_label'],['#stat3-num','stat3_num'],
+    ['#stat3-label','stat3_label'],['#about-eyebrow','about_eyebrow'],['#about-title','about_title'],
+    ['#about-p1','about_p1'],['#about-p2','about_p2'],['#cta-text','cta_text'],['#cta-btn','cta_btn'],
+    ['#contact-title','contact_title'],['#contact-lead','contact_lead'],
+    ['#contact-cta-title','contact_cta_title'],['#contact-cta-p','contact_cta_p'],
+    ['#contact-cta-btn','contact_cta_btn'],['#footer-copy','footer_copy'],
+  ];
+
+  function setLang(lang) {
+    const t = TRANSLATIONS[lang];
+    if (!t) return;
+    document.getElementById('html-root').lang = lang;
+    T_MAP.forEach(([sel, key]) => {
+      const el = document.querySelector(sel);
+      if (el && t[key] !== undefined) el.innerHTML = t[key];
+    });
+    // Update dropdown options
+    document.querySelectorAll('.lang-option').forEach(btn => {
+      btn.classList.toggle('active', btn.dataset.lang === lang);
+    });
+    // Update trigger button display
+    const chosen = document.querySelector(`.lang-option[data-lang="${lang}"]`);
+    if (chosen) {
+      document.getElementById('lang-current-flag').textContent = chosen.dataset.flag;
+      document.getElementById('lang-current-code').textContent = chosen.dataset.code;
+    }
+    // Refresh copyright year with translated string
+    const yr = new Date().getFullYear();
+    const copyEl = document.getElementById('footer-copy');
+    if (copyEl && t.footer_copy) {
+      copyEl.textContent = t.footer_copy.replace(/\d{4}/, yr);
+    }
+    // Close dropdown
+    closeLangDropdown();
+    try { localStorage.setItem('grapad-lang', lang); } catch(e) {}
+  }
+
+  (function() {
+    // Set dynamic copyright year
+    const yr = new Date().getFullYear();
+    const copyEl = document.getElementById('footer-copy');
+    if (copyEl) copyEl.textContent = '© ' + yr + ' GRAPAD asbl. All rights reserved.';
+
+    // Default is always English — only change if user has previously chosen a language
+    let lang = 'en';
+    try {
+      const saved = localStorage.getItem('grapad-lang');
+      if (saved && TRANSLATIONS[saved]) lang = saved;
+    } catch(e) {}
+    if (lang !== 'en') setLang(lang);
+  })();
+
+</script>
 
 </body>
-
 </html>
